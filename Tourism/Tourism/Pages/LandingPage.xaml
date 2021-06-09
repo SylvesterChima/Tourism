@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tourism.Pages.LandingPage"
+             BackgroundImageSource="cloud_bg.jpg"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid Margin="0" Padding="0" RowSpacing="0" HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="bgContainer" IsVisible="false">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="waterfall.png"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="Fill"/>
+
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill"
+                         BackgroundColor="#bb2E3E5C">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Margin="0,30,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="1"
+                               HorizontalTextAlignment="Center"
+                               Text="Enugu State"
+                               TextColor="#fff"
+                               FontSize="18"
+                               FontAttributes="Bold"/>
+                    </Grid>
+                </Grid>
+                
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

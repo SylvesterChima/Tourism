@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tourism.Pages.HomePage"
+             xmlns:model="clr-namespace:Tourism.Models"
+             xmlns:local="clr-namespace:Tourism.ViewModels"
+             xmlns:fa="clr-namespace:FontAwesome"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <CarouselView x:Name="csvBanners" IndicatorView="indicatorView" ItemsSource="{Binding Banners}" HeightRequest="270" HorizontalOptions="FillAndExpand" 
+                           IsScrollAnimated="True" IsSwipeEnabled="True" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Image Source="{Binding DefaultImage}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
+                                <BoxView BackgroundColor="#3306c96b" HorizontalOptions="FillAndExpand" HeightRequest="270" VerticalOptions="StartAndExpand"/>
+                                <StackLayout Margin="30,20,0,0" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" x:DataType="model:Destination">
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="12"/>
+                                    <BoxView BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="1" WidthRequest="50"/>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" TextColor="{DynamicResource SecondaryColor}" FontSize="35"/>
+                                        <Label Text="{x:Static fa:fa.Bars}" FontFamily="FAS" TextColor="Red" FontSize="35"/>
+                                    </StackLayout>
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                                        NumberOfTapsRequired="1"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ItemTapped}"		
+                                                        CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView Grid.Row="1" x:Name="indicatorView" IndicatorColor="LightGray" SelectedIndicatorColor="Red"/>
+
+                <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="End" Margin="30,20">
+                    <!--<ImageButton Source="icon_about.png" Aspect="AspectFit" HeightRequest="32" WidthRequest="30" VerticalOptions="Center"/>
+                    <ImageButton Source="Icon_feed.png" Aspect="AspectFit" HeightRequest="32" WidthRequest="30" VerticalOptions="Center"/>-->
+                </StackLayout>
+                <StackLayout Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid RowSpacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid RowSpacing="20" Margin="30,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Top Destinations" TextColor="Black" FontSize="20"/>
+                            <Label Text="Show all"  TextColor="Black" FontSize="14" VerticalOptions="Center" Opacity="0.5" HorizontalOptions="End" Margin="0,0,30,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding GoToDestinationCommand}"		
+                                        CommandParameter="Top Destination">
+                                    </TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <ScrollView Orientation="Horizontal" Grid.Row="1" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+                                <StackLayout BindableLayout.ItemsSource="{Binding TopDestinations}" Orientation="Horizontal" Spacing="20" VerticalOptions="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout VerticalOptions="Start" x:DataType="model:Destination">
+                                                <Frame Padding="0" HasShadow="False"  HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="10" HeightRequest="150" WidthRequest="150">
+                                                    <Image Source="{Binding DefaultImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                </Frame>
+                                                <Label Text="{Binding Name}" TextColor="Black" FontSize="15" />
+                                                <Label Text="{Binding Title}" Margin="0,-7,0,0" TextColor="#62153B" FontSize="12"/>
+
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        NumberOfTapsRequired="1"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ItemTapped}"		
+                                                        CommandParameter="{Binding .}">
+                                                    </TapGestureRecognizer>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </ScrollView>
+                        </Grid>
+
+                        <Grid Grid.Row="1" RowSpacing="20" Margin="30,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="New Trends" TextColor="Black" FontSize="20"/>
+                            <Label Text="Show all" TextColor="Black" FontSize="14" VerticalOptions="Center" Opacity="0.5" HorizontalOptions="End" Margin="0,0,30,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding GoToDestinationCommand}"		
+                                        CommandParameter="New Trends">
+                                    </TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <ScrollView Orientation="Horizontal" Grid.Row="1" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+                                <StackLayout BindableLayout.ItemsSource="{Binding TrendingDestinations}" Orientation="Horizontal" Spacing="20" VerticalOptions="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout VerticalOptions="Start" x:DataType="model:Destination">
+                                                <Frame Padding="0" HasShadow="False"  HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="10" HeightRequest="150" WidthRequest="150">
+                                                    <Image Source="{Binding DefaultImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                </Frame>
+                                                <Label Text="{Binding Name}" TextColor="Black" FontSize="15" />
+                                                <Label Text="{Binding Title}" Margin="0,-7,0,0" TextColor="#62153B" FontSize="12"/>
+
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        NumberOfTapsRequired="1"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ItemTapped}"		
+                                                        CommandParameter="{Binding .}">
+                                                    </TapGestureRecognizer>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </ScrollView>
+                        </Grid>
+
+                        <Grid Grid.Row="2" RowSpacing="20" Margin="30,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Events" TextColor="Black" FontSize="20"/>
+                            <Label Text="Show all" TextColor="Black" FontSize="14" VerticalOptions="Center" Opacity="0.5" HorizontalOptions="End" Margin="0,0,30,0"/>
+                            <ScrollView Orientation="Horizontal" Grid.Row="1" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+                                <StackLayout BindableLayout.ItemsSource="{Binding TopDestinations}" Orientation="Horizontal" Spacing="20" VerticalOptions="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout VerticalOptions="Start" x:DataType="model:Destination">
+                                                <Frame Padding="0" HasShadow="False"  HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="10" HeightRequest="150" WidthRequest="150">
+                                                    <Image Source="{Binding DefaultImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                </Frame>
+                                                <Label Text="{Binding Name}" TextColor="Black" FontSize="15" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                        NumberOfTapsRequired="1"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ItemTapped}"		
+                                                        CommandParameter="{Binding .}">
+                                                    </TapGestureRecognizer>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </ScrollView>
+                        </Grid>
+
+
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
