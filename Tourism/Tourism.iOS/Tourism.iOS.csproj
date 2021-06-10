@@ -68,6 +68,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\MyScrollViewRender.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -138,7 +139,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Tourism\Tourism.csproj">
-      <Project>{A5D54A2B-A044-4DAE-9E39-54215B75B193}</Project>
+      <Project>{00C93FA5-3084-4364-AE6D-23FC3BAED196}</Project>
       <Name>Tourism</Name>
     </ProjectReference>
   </ItemGroup>
@@ -147,5 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\waterfall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Renderers\" />
   </ItemGroup>
 </Project>

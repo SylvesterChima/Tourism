@@ -4,11 +4,12 @@
              x:Class="Tourism.Pages.HomePage"
              xmlns:model="clr-namespace:Tourism.Models"
              xmlns:local="clr-namespace:Tourism.ViewModels"
-             xmlns:fa="clr-namespace:FontAwesome"
-             NavigationPage.HasNavigationBar="False">
+             xmlns:fa="clr-namespace:FontAwesome" xmlns:tourism="clr-namespace:Tourism"
+             NavigationPage.HasNavigationBar="False"
+             >
     <ContentPage.Content>
-        <ScrollView>
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+        <tourism:myScrollView  Margin="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+            <Grid Margin="0" Padding="0" RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -16,13 +17,13 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <CarouselView x:Name="csvBanners" IndicatorView="indicatorView" ItemsSource="{Binding Banners}" HeightRequest="270" HorizontalOptions="FillAndExpand" 
+                <CarouselView x:Name="csvBanners" IndicatorView="indicatorView" ItemsSource="{Binding Banners}" HeightRequest="350" HorizontalOptions="FillAndExpand" 
                            IsScrollAnimated="True" IsSwipeEnabled="True" >
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Image Source="{Binding DefaultImage}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
-                                <BoxView BackgroundColor="#3306c96b" HorizontalOptions="FillAndExpand" HeightRequest="270" VerticalOptions="StartAndExpand"/>
+                                <BoxView BackgroundColor="#3306c96b" HorizontalOptions="FillAndExpand" HeightRequest="350" VerticalOptions="StartAndExpand"/>
                                 <StackLayout Margin="30,20,0,0" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" x:DataType="model:Destination">
                                     <Label Text="{Binding Name}" TextColor="White" FontSize="12"/>
                                     <BoxView BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="1" WidthRequest="50"/>
@@ -170,6 +171,6 @@
                     </Grid>
                 </StackLayout>
             </Grid>
-        </ScrollView>
+        </tourism:myScrollView>
     </ContentPage.Content>
 </ContentPage>
