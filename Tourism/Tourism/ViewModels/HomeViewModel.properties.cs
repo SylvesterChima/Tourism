@@ -13,23 +13,33 @@ namespace Tourism.ViewModels
     {
         internal readonly IErrorManager ErrorManager;
         internal readonly IMessenger Messenger;
-        internal readonly IDestinationService DestinationService;
+        internal readonly IDestinationService _destinationService;
+        internal readonly IImageService _imageService;
+        internal readonly IEventService _eventService;
+        internal readonly IAppState AppState;
 
         public Command<string> GoToDestinationCommand { get; }
-        public Command<Destination> ItemTapped { get; }
+        public Command<DestinationResponse> ItemTapped { get; }
+        public Command<ImageResponse> ImageItemTapped { get; }
 
-        public List<Destination> Banners { get; set; }
-        public List<Destination> TopDestinations { get; set; }
-        public List<Destination> TrendingDestinations { get; set; }
+        public List<DestinationResponse> Banners { get; set; }
+        public List<DestinationResponse> TopDestinations { get; set; }
+        public List<ImageResponse> RecentImages { get; set; }
+        public List<EventResponse> Events { get; set; }
 
-        public HomeViewModel(IErrorManager errorManager, IMessenger messenger, IDestinationService destinationService)
+        public HomeViewModel(IErrorManager errorManager, IMessenger messenger, IAppState appState, IDestinationService destinationService,
+            IEventService eventService, IImageService imageService)
         {
             this.ErrorManager = errorManager;
             this.Messenger = messenger;
-            this.DestinationService = destinationService;
+            this._destinationService = destinationService;
+            this.AppState = appState;
+            this._eventService = eventService;
+            this._imageService = imageService;
 
             GoToDestinationCommand = new Command<string>(OnDestinationClicked);
-            ItemTapped = new Command<Destination>(OnItemSelected);
+            ItemTapped = new Command<DestinationResponse>(OnItemSelected);
+            ImageItemTapped = new Command<ImageResponse>(OnImageItemSelected);
         }
     }
 }

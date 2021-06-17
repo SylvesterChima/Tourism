@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tourism.Constants;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Tourism.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class DestinationDetailPage : ContentPage
     {
         double _titleTextTop;
-        public HomePage()
+
+        public DestinationDetailPage()
         {
             InitializeComponent();
             TheScroll.PropertyChanged += OnScrollViewPropertyChanged;
-            csvBanners.SizeChanged += OncsvBannersSizeChanged;
+            BearImage.SizeChanged += OnBearImageSizeChanged;
             TitleText.SizeChanged += OnTitleTextSizeChanged;
         }
 
@@ -32,12 +33,12 @@ namespace Tourism.Pages
             //_titleTextTop = GetScreenCoordinates(TitleText).Y;
         }
 
-        private void OncsvBannersSizeChanged(object sender, System.EventArgs e)
+        private void OnBearImageSizeChanged(object sender, System.EventArgs e)
         {
-            csvBanners.SizeChanged -= OncsvBannersSizeChanged;
+            BearImage.SizeChanged -= OnBearImageSizeChanged;
 
             //When the bear image has been loaded, reposition the news header to the bottom of this image
-            TitleText.Margin = new Thickness(0, csvBanners.Height - 40, 0, 0);
+            TitleText.Margin = new Thickness(0, BearImage.Height - 40, 0, 0);
         }
 
         private void OnScrollViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -48,18 +49,11 @@ namespace Tourism.Pages
                 System.Diagnostics.Debug.WriteLine($"Y position: {scrolled.ToString()}");
 
                 if (scrolled < _titleTextTop)
-                {
                     TitleText.TranslationY = (0 - scrolled);
-                    TitleText.IsVisible = false;
-                    TitleText.BackgroundColor = Color.Transparent;
-                }
                 else
-                {
                     TitleText.TranslationY = (0 - _titleTextTop);
-                    TitleText.IsVisible = true;
-                    TitleText.BackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
-                }
             }
         }
+
     }
 }

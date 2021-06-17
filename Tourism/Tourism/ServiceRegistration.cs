@@ -16,7 +16,10 @@ namespace Tourism
             FreshIOC.Container.Register<IApp>(app);
             FreshIOC.Container.Register<IErrorManager, ErrorManager>();
             FreshIOC.Container.Register<IMessenger, FormsMessenger>();
-            FreshIOC.Container.Register<IDestinationService, DestinationMockService>();
+            FreshIOC.Container.Register<IDestinationService, DestinationService>();
+            FreshIOC.Container.Register<IAppState, AppState>();
+            FreshIOC.Container.Register<IEventService, EventService>();
+            FreshIOC.Container.Register<IImageService, ImageService>();
         }
     }
 }

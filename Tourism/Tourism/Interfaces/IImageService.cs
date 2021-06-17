@@ -6,8 +6,8 @@ using Tourism.Models;
 
 namespace Tourism.Interfaces
 {
-    public interface IDestinationService
+    public interface IImageService
     {
-        Task<List<DestinationResponse>> GetDestinations();
+        Task<List<ImageResponse>> GetImages();
     }
 }
