@@ -37,7 +37,7 @@ namespace Tourism.Pages
             csvBanners.SizeChanged -= OncsvBannersSizeChanged;
 
             //When the bear image has been loaded, reposition the news header to the bottom of this image
-            TitleText.Margin = new Thickness(0, csvBanners.Height - 40, 0, 0);
+            TitleText.Margin = new Thickness(0, csvBanners.Height - 60, 0, 0);
         }
 
         private void OnScrollViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

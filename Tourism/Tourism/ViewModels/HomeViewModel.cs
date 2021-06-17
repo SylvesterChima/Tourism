@@ -13,7 +13,7 @@ namespace Tourism.ViewModels
         {
             try
             {
-                UserDialogs.Instance.ShowLoading();
+                //UserDialogs.Instance.ShowLoading();
                 this.AppState.Destinations = await _destinationService.GetDestinations();
                 this.AppState.Events = await _eventService.GetEvents();
                 this.AppState.Images = await _imageService.GetImages();
@@ -23,7 +23,7 @@ namespace Tourism.ViewModels
                 this.Events = this.AppState.GetRandomEvents();
                 this.RecentImages = this.AppState.GetRecentImages();
 
-                UserDialogs.Instance.HideLoading();
+                //UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
