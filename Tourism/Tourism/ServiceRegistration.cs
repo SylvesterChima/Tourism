@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Text;
 using Tourism.Interfaces;
 using Tourism.Services.Business;
-using Tourism.Services.Mock;
 
 namespace Tourism
 {
@@ -21,6 +20,8 @@ namespace Tourism
             FreshIOC.Container.Register<IAppState, AppState>();
             FreshIOC.Container.Register<IEventService, EventService>();
             FreshIOC.Container.Register<IImageService, ImageService>();
+            FreshIOC.Container.Register<ICategoryService, CategoryService>();
+            FreshIOC.Container.Register<IWhereToStayService, WhereToStayService>();
         }
     }
 }

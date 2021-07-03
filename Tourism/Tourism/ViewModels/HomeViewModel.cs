@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Tourism.MessagerModels;
 using Tourism.Models;
 
 namespace Tourism.ViewModels
@@ -13,17 +14,19 @@ namespace Tourism.ViewModels
         {
             try
             {
-                //UserDialogs.Instance.ShowLoading();
+                UserDialogs.Instance.ShowLoading();
                 this.AppState.Destinations = await _destinationService.GetDestinations();
                 this.AppState.Events = await _eventService.GetEvents();
                 this.AppState.Images = await _imageService.GetImages();
+                this.AppState.Categories = await _categoryService.GetCategories();
 
                 this.Banners = this.AppState.GetBanners();
                 this.TopDestinations = this.AppState.GetTopDestinations();
                 this.Events = this.AppState.GetRandomEvents();
                 this.RecentImages = this.AppState.GetRecentImages();
+                this.Categories = this.AppState.GetRandomCategories();
 
-                //UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -58,24 +61,74 @@ namespace Tourism.ViewModels
             }
         }
 
-        async void OnDestinationClicked(string str)
+        async void OnSellAllClicked(string str)
         {
             if (string.IsNullOrEmpty(str))
                 return;
+            if(str == "Destinations")
+            {
+                var nav = new DestinationViewModel.Nav
+                {
+                    Category = "Destinations"
+                };
+                await this.CoreMethods.PushPageModel<DestinationViewModel>(nav);
+            }
+            else if (str == "Categories")
+            {
+                await this.CoreMethods.PushPageModel<CategoryViewModel>();
+            }
+            else if (str == "Photos")
+            {
+                await this.CoreMethods.PushPageModel<PhotoViewModel>();
+            }
         }
 
-        async void OnItemSelected(DestinationResponse item)
+        async void OnDestinationItemSelected(DestinationResponse item)
         {
             if (item == null)
                 return;
-            await this.CoreMethods.PushPageModel<DestinationDetailViewModel>();
+            var nav = new DestinationDetailViewModel.Nav
+            {
+                DestinationId = item.Id
+            };
+            await this.CoreMethods.PushPageModel<DestinationDetailViewModel>(nav);
+        }
+
+        async void OnCateogrySelected(DestinationCategoryResponse item)
+        {
+            if (item == null)
+                return;
+            var nav = new DestinationViewModel.Nav
+            {
+                Category = item.Name
+            };
+            await this.CoreMethods.PushPageModel<DestinationViewModel>(nav);
+        }
+        async void OnEventSelected(EventResponse item)
+        {
+            if (item == null)
+                return;
+            var nav = new EventDetailViewModel.Nav
+            {
+                Event = item
+            };
+            await this.CoreMethods.PushPageModel<EventDetailViewModel>(nav);
         }
 
         async void OnImageItemSelected(ImageResponse item)
         {
             if (item == null)
                 return;
+            var nav = new ImageViewerViewModel.Nav
+            {
+                Image = item
+            };
+            await this.CoreMethods.PushPageModel<ImageViewerViewModel>(nav);
+        }
 
+        void OnShowFlyout()
+        {
+            Messenger.Send(new FlyoutMenuTapped());
         }
     }
 }

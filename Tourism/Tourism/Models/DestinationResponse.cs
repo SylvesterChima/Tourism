@@ -18,6 +18,7 @@ namespace Tourism.Models
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
         public DateTime Date { get; set; }
+        public string Area { get; set; }
 
         public List<StayResponse> Stays { get; set; }
         public List<NearByResponse> Nears { get; set; }

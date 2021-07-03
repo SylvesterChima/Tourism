@@ -1,13 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:fa="clr-namespace:FontAwesome"
              x:Class="Tourism.FlyoutMenuPage"
-             Title="Enugu Tourism">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             Title="Enugu Tourism"
+             BackgroundColor="#ffffff">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <yummy:PancakeView CornerRadius="0,0,0,40" BackgroundColor="{DynamicResource PrimaryColor}" HeightRequest="250">
+            <Image Source="logo.png" WidthRequest="64" HeightRequest="64"
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </yummy:PancakeView>
+        <Grid Grid.Row="1" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal" Grid.Row="0" Padding="10">
+                <Label Text="{x:Static fa:fa.Artstation}" FontSize="24" FontFamily="FAB" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="Enugu at a glance" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Home_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" x:Name="sDestination">
+                <Label Text="{x:Static fa:fa.UmbrellaBeach}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="Destinations" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Destination_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="2" Padding="10">
+                <Label Text="{x:Static fa:fa.CalendarAlt}" FontSize="24" FontFamily="FAR" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="Events" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Events_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="3" Padding="10">
+                <Label Text="{x:Static fa:fa.CameraRetro}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="Photos" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Photos_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="4" Padding="10">
+                <Label Text="{x:Static fa:fa.Hotel}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="Hotels" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Hotels_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <!--<StackLayout Orientation="Horizontal" Grid.Row="5" Padding="10">
+                <Label Text="{x:Static fa:fa.Plane}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="My Trips" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="6" Padding="10">
+                <Label Text="{x:Static fa:fa.FileAlt}" FontSize="24" FontFamily="FAR" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
+                <Label Text="About" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            </StackLayout>-->
+        </Grid>
+    </Grid>
 </ContentPage>

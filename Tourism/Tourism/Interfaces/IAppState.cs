@@ -10,12 +10,14 @@ namespace Tourism.Interfaces
         List<DestinationResponse> Destinations { get; set; }
         List<EventResponse> Events { get; set; }
         List<ImageResponse> Images { get; set; }
+        List<DestinationCategoryResponse> Categories { get; set; }
 
 
         List<DestinationResponse> GetBanners();
         List<DestinationResponse> GetTopDestinations();
         List<EventResponse> GetRandomEvents();
         List<ImageResponse> GetRecentImages();
+        List<DestinationCategoryResponse> GetRandomCategories();
 
     }
 }

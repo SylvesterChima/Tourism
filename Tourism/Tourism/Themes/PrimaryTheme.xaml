@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourism.Themes.PrimaryTheme">
 
-    <Color x:Key="PrimaryColor">#1FCC79</Color>
-    <Color x:Key="PrimaryDarkColor">#2ECC71</Color>
+    <Color x:Key="PrimaryColor">#1e9f79</Color>
+    <Color x:Key="PrimaryDarkColor">#1e9f65</Color>
     <Color x:Key="PrimaryDarkenColor">#239B56</Color>
     <Color x:Key="PrimaryLighterColor">#58D68D</Color>
     <Color x:Key="PrimaryGradient">#FF6464</Color>
     <Color x:Key="PrimaryLight">#82E0AA</Color>
+    <Color x:Key="OpacityColor">#6617202A</Color>
+    <Color x:Key="OpacityLightColor">#4417202A</Color>
+    <Color x:Key="OpacityLighterColor">#3317202A</Color>
+
+    <Color x:Key="RedColor">#FF6464</Color>
 
     <Color x:Key="SecondaryColor">#2E3E5C</Color>
     <Color x:Key="SecondaryLightColor">#9FA5C0</Color>

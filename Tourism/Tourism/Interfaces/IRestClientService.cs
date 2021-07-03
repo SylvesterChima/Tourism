@@ -12,11 +12,19 @@ namespace Tourism.Interfaces
     {
         [Get("/api/Destinations")]
         Task<List<DestinationResponse>> GetDestinations();
+        [Get("/api/Destinations/{id}")]
+        Task<DestinationResponse> GetDestinationById(int Id);
 
         [Get("/api/Images")]
         Task<List<ImageResponse>> GetImages();
 
         [Get("/api/Events")]
         Task<List<EventResponse>> GetEvents();
+
+        [Get("/api/Destinations/categories")]
+        Task<List<DestinationCategoryResponse>> GetCategories();
+
+        [Get("/api/WhereToStay")]
+        Task<List<WhereToStayResponse>> GetWhereToStays();
     }
 }

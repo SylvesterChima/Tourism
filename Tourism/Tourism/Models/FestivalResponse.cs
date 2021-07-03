@@ -15,5 +15,6 @@ namespace Tourism.Models
         public DateTime EndDate { get; set; }
         public string About { get; set; }
         public string ImageUrl { get; set; }
+        public string Location { get; set; }
     }
 }

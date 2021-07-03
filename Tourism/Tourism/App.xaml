@@ -2,12 +2,58 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourism.App"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:themes="clr-namespace:Tourism.Themes">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <themes:PrimaryTheme />
             </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate
+		            x:Key="TabItemTemplate">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+				                Grid.Row="0"
+				                VerticalOptions="Center"
+				                HorizontalOptions="Center"
+				                Source="{TemplateBinding CurrentIcon}" />
+
+                    <BoxView Grid.Row="0" WidthRequest="8" HeightRequest="8"
+                           HorizontalOptions="Center"
+                           Margin="22,6,0,0"
+                           VerticalOptions="Start"
+                           CornerRadius="4"
+                           BackgroundColor="{TemplateBinding CurrentBadgeBackgroundColor}">
+
+
+                    </BoxView>
+                    <Label
+				                Grid.Row="1"
+				                HorizontalOptions="Center"
+                        Margin="0,0,0,15"
+				                FontSize="{TemplateBinding FontSize}"
+				                Text="{TemplateBinding Text}"
+				                TextColor="{TemplateBinding CurrentTextColor}" />
+                </Grid>
+            </ControlTemplate>
+
+            <Style
+		            x:Key="TabItemStyle"
+		            TargetType="xct:TabViewItem">
+                <Setter
+			                Property="FontSize"
+			                Value="14" />
+                <Setter
+			                Property="TextColor"
+			                Value="#827D7D" />
+                <Setter
+			                Property="TextColorSelected"
+			                Value="#5CC9E5" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

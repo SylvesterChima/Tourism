@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:Tourism.Models" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:Tourism.ViewModels" 
+             x:Class="Tourism.Pages.PhotoPage"
+             Title="Photos"
+             BackgroundColor="#ffffff">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *" Padding="10,0,10,5">
+
+            <StackLayout Grid.Row="1" Spacing="15" Margin="0,5,0,0">
+                <CollectionView SelectionMode="None" ItemsSource="{Binding Images}" x:Name="mCollectionView">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="2" HorizontalItemSpacing="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label Text="No result found." TextColor="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:ImageResponse">
+                                <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="140" 
+                                   HorizontalOptions="FillAndExpand"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:PhotoViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

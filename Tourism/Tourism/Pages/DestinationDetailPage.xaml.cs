@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Tourism.Constants;
+using Tourism.Models;
+using Tourism.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +21,7 @@ namespace Tourism.Pages
         {
             InitializeComponent();
             TheScroll.PropertyChanged += OnScrollViewPropertyChanged;
-            BearImage.SizeChanged += OnBearImageSizeChanged;
+            imageContainer.SizeChanged += OnimageContainerSizeChanged;
             TitleText.SizeChanged += OnTitleTextSizeChanged;
         }
 
@@ -33,12 +36,12 @@ namespace Tourism.Pages
             //_titleTextTop = GetScreenCoordinates(TitleText).Y;
         }
 
-        private void OnBearImageSizeChanged(object sender, System.EventArgs e)
+        private void OnimageContainerSizeChanged(object sender, System.EventArgs e)
         {
-            BearImage.SizeChanged -= OnBearImageSizeChanged;
+            imageContainer.SizeChanged -= OnimageContainerSizeChanged;
 
             //When the bear image has been loaded, reposition the news header to the bottom of this image
-            TitleText.Margin = new Thickness(0, BearImage.Height - 40, 0, 0);
+            TitleText.Margin = new Thickness(0, imageContainer.Height - 60, 0, 0);
         }
 
         private void OnScrollViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -49,11 +52,87 @@ namespace Tourism.Pages
                 System.Diagnostics.Debug.WriteLine($"Y position: {scrolled.ToString()}");
 
                 if (scrolled < _titleTextTop)
+                {
                     TitleText.TranslationY = (0 - scrolled);
+                    TitleText.IsVisible = false;
+                    TitleText.BackgroundColor = Color.Transparent;
+                }
                 else
-                    TitleText.TranslationY = (0 - _titleTextTop);
+                {
+                    TitleText.TranslationY = (0 - (_titleTextTop + 2));
+                    TitleText.IsVisible = true;
+                    TitleText.BackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
+                }
             }
         }
 
+        private async void Nearby_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as DestinationDetailViewModel;
+            try
+            {
+                var mNearBy = (NearByResponse)((Frame)sender).BindingContext;
+                if (mNearBy != null)
+                {
+                    await model.OpenNearByDestination(mNearBy.DestinationId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
+
+        private async void Photo_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as DestinationDetailViewModel;
+            try
+            {
+                var obj = (ImageResponse)((StackLayout)sender).BindingContext;
+                if (obj != null)
+                {
+                    await model.OpenPhoto(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
+
+        private async void Festival_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as DestinationDetailViewModel;
+            try
+            {
+                var obj = (FestivalResponse)((StackLayout)sender).BindingContext;
+                if (obj != null)
+                {
+                    await model.OpenFestival(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
+
+        private async void Hotel_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as DestinationDetailViewModel;
+            try
+            {
+                var obj = (StayResponse)((StackLayout)sender).BindingContext;
+                if (obj != null)
+                {
+                    await model.OpenHotel(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
     }
 }

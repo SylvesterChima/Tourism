@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:tourism="clr-namespace:Tourism" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fa="clr-namespace:FontAwesome"
+             x:Class="Tourism.Pages.EventDetailPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <Grid RowSpacing="0" ColumnSpacing="0" Padding="0" BackgroundColor="#ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ContentGrid" RowSpacing="0" ColumnSpacing="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <tourism:myScrollView x:Name="TheScroll" Padding="0" Margin="0">
+                <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid x:Name="imageContainer" Margin="-2,-2,0,0" HeightRequest="350" HorizontalOptions="FillAndExpand">
+                        <yummy:PancakeView CornerRadius="0,0,0,40">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">
+                                <ffimageloading:CachedImage Source="{Binding Event.ImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </Grid>
+                    <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <!--About view-->
+                                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" Padding="0,12,0,0" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Row="0" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Event.Name}" FontSize="20" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="StartAndExpand"/>
+                                        <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                                            <Label Text="Event Date:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                            <Label Text="{Binding Event.StartDate, StringFormat='{0:dd MMM yyyy}'}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="To:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                <Label Text="{Binding Event.EndDate, StringFormat='{0:dd MMM yyyy}'}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
+                                            <Label Text="Location:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                            <Label Text="{Binding Event.Location}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding Event.About}" Margin="0,15,0,0" FontSize="14" TextColor="{DynamicResource Gray-600}" HorizontalOptions="StartAndExpand"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </StackLayout>
+
+                </Grid>
+            </tourism:myScrollView>
+
+
+        </Grid>
+        <Label x:Name="TitleText"
+                IsVisible="false"
+                HeightRequest="60"
+                Padding="0"
+                Text="{Binding Event.Name}"
+                LineBreakMode="TailTruncation"
+                VerticalOptions="Start" VerticalTextAlignment="Center"                   
+                HorizontalTextAlignment="Center" />
+
+
+        <Button Text="{x:Static fa:fa.ArrowCircleLeft}" FontFamily="FAS" TextColor="{DynamicResource Gray-100}" FontSize="30" BorderColor="White" 
+                        Padding="0,0,0,0" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" 
+                        HorizontalOptions="Start" VerticalOptions="Start" Command="{Binding GoBack}">
+
+            <Button.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="15,30,0,0" />
+                    <On Platform="Android" Value="15,15,0,0" />
+                </OnPlatform>
+            </Button.Margin>
+        </Button>
+    </Grid>
+</ContentPage>

@@ -6,7 +6,7 @@ namespace Tourism.Constants
 {
     public static class PageConstants
     {
-        public static readonly string PrimaryColor = "#1FCC79";
+        public static readonly string PrimaryColor = "#1e9f79";
         public static readonly string HintColor = "#BBBBBB";
         public static readonly string HintColorDark = "#777777";
         public static readonly string White = "#FFFFFF";

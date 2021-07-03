@@ -16,19 +16,86 @@ namespace Tourism.ViewModels
         internal readonly IDestinationService _destinationService;
         internal readonly IImageService _imageService;
         internal readonly IEventService _eventService;
+        internal readonly ICategoryService _categoryService;
         internal readonly IAppState AppState;
 
-        public Command<string> GoToDestinationCommand { get; }
-        public Command<DestinationResponse> ItemTapped { get; }
+        public Command<string> SeeAllCommand { get; }
+        public Command<DestinationResponse> DestinationTapped { get; }
         public Command<ImageResponse> ImageItemTapped { get; }
+        public Command<DestinationCategoryResponse> CategoryTapped { get; }
+        public Command<EventResponse> EventTapped { get; }
+        public Command ShowFlyout { get; }
 
-        public List<DestinationResponse> Banners { get; set; }
+        public List<DestinationResponse> Banners { get; set; } 
         public List<DestinationResponse> TopDestinations { get; set; }
         public List<ImageResponse> RecentImages { get; set; }
         public List<EventResponse> Events { get; set; }
+        public List<DestinationCategoryResponse> Categories { get; set; }
+
+
+        public bool ShowTopDestination
+        {
+            get 
+            {
+                if(TopDestinations != null)
+                {
+                    return TopDestinations.Count > 0;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool ShowCategories
+        {
+            get
+            {
+                if (Categories != null)
+                {
+                    return Categories.Count > 0;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool ShowPhotos
+        {
+            get
+            {
+                if (RecentImages != null)
+                {
+                    return RecentImages.Count > 0;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool ShowEvents
+        {
+            get
+            {
+                if (Events != null)
+                {
+                    return Events.Count > 0;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
 
         public HomeViewModel(IErrorManager errorManager, IMessenger messenger, IAppState appState, IDestinationService destinationService,
-            IEventService eventService, IImageService imageService)
+            IEventService eventService, IImageService imageService, ICategoryService categoryService)
         {
             this.ErrorManager = errorManager;
             this.Messenger = messenger;
@@ -36,10 +103,14 @@ namespace Tourism.ViewModels
             this.AppState = appState;
             this._eventService = eventService;
             this._imageService = imageService;
+            this._categoryService = categoryService;
 
-            GoToDestinationCommand = new Command<string>(OnDestinationClicked);
-            ItemTapped = new Command<DestinationResponse>(OnItemSelected);
+            SeeAllCommand = new Command<string>(OnSellAllClicked);
+            DestinationTapped = new Command<DestinationResponse>(OnDestinationItemSelected);
             ImageItemTapped = new Command<ImageResponse>(OnImageItemSelected);
+            CategoryTapped = new Command<DestinationCategoryResponse>(OnCateogrySelected);
+            EventTapped = new Command<EventResponse>(OnEventSelected);
+            ShowFlyout = new Command(OnShowFlyout);
         }
     }
 }

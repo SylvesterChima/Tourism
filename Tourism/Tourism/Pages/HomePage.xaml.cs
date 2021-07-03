@@ -55,7 +55,7 @@ namespace Tourism.Pages
                 }
                 else
                 {
-                    TitleText.TranslationY = (0 - _titleTextTop);
+                    TitleText.TranslationY = (0 - (_titleTextTop + 2));
                     TitleText.IsVisible = true;
                     TitleText.BackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
                 }

@@ -9,5 +9,6 @@ namespace Tourism.Interfaces
     public interface IDestinationService
     {
         Task<List<DestinationResponse>> GetDestinations();
+        Task<DestinationResponse> GetDestinationById(int Id);
     }
 }

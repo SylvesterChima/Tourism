@@ -12,6 +12,7 @@ namespace Tourism.Services.Business
         public List<DestinationResponse> Destinations { get; set; } = new List<DestinationResponse>();
         public List<EventResponse> Events { get; set; } = new List<EventResponse>();
         public List<ImageResponse> Images { get; set; } = new List<ImageResponse>();
+        public List<DestinationCategoryResponse> Categories { get; set; } = new List<DestinationCategoryResponse>();
 
         public List<DestinationResponse> GetBanners()
         {
@@ -22,6 +23,18 @@ namespace Tourism.Services.Business
             else
             {
                 return Destinations;
+            }
+        }
+
+        public List<DestinationCategoryResponse> GetRandomCategories()
+        {
+            if (Categories.Count > 5)
+            {
+                return GetRandomFromList(Categories, 5);
+            }
+            else
+            {
+                return Categories;
             }
         }
 

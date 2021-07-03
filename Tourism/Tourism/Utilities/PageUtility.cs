@@ -40,5 +40,53 @@ namespace Tourism.Utilities
 
             return nav;
         }
+
+        public static Page CreateDestinationPage()
+        {
+
+            IApp app = FreshMvvm.FreshIOC.Container.Resolve<IApp>();
+            var navData = new DestinationViewModel.Nav
+            {
+                Category = "Destinations"
+            };
+            Page page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<DestinationViewModel>(navData);
+            NavigationPage nav = new FreshMvvm.FreshNavigationContainer(page) as NavigationPage;
+            nav.BarBackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
+            nav.BarTextColor = Color.FromHex(PageConstants.White);
+            return nav;
+        }
+
+        public static Page CreatePhotoPage()
+        {
+
+            IApp app = FreshMvvm.FreshIOC.Container.Resolve<IApp>();
+            Page page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<PhotoViewModel>();
+            NavigationPage nav = new FreshMvvm.FreshNavigationContainer(page) as NavigationPage;
+            nav.BarBackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
+            nav.BarTextColor = Color.FromHex(PageConstants.White);
+            return nav;
+        }
+
+        public static Page CreateEventsPage()
+        {
+
+            IApp app = FreshMvvm.FreshIOC.Container.Resolve<IApp>();
+            Page page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<EventsViewModel>();
+            NavigationPage nav = new FreshMvvm.FreshNavigationContainer(page) as NavigationPage;
+            nav.BarBackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
+            nav.BarTextColor = Color.FromHex(PageConstants.White);
+            return nav;
+        }
+
+        public static Page CreateHotelsPage()
+        {
+
+            IApp app = FreshMvvm.FreshIOC.Container.Resolve<IApp>();
+            Page page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<HotelsViewModel>();
+            NavigationPage nav = new FreshMvvm.FreshNavigationContainer(page) as NavigationPage;
+            nav.BarBackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
+            nav.BarTextColor = Color.FromHex(PageConstants.White);
+            return nav;
+        }
     }
 }
