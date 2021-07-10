@@ -66,9 +66,12 @@
             </StackLayout>
             <!--<StackLayout Orientation="Horizontal" Grid.Row="5" Padding="10">
                 <Label Text="{x:Static fa:fa.Plane}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="My Trips" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="6" Padding="10">
+                <Label Text="Meet Commissioner" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Commissioner_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>-->
+            <!--<StackLayout Orientation="Horizontal" Grid.Row="6" Padding="10">
                 <Label Text="{x:Static fa:fa.FileAlt}" FontSize="24" FontFamily="FAR" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
                 <Label Text="About" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
             </StackLayout>-->

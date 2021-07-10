@@ -26,5 +26,11 @@ namespace Tourism.Interfaces
 
         [Get("/api/WhereToStay")]
         Task<List<WhereToStayResponse>> GetWhereToStays();
+
+        [Get("/api/Destinations/articles")]
+        Task<List<ArticleResponse>> GetRecentArticles();
+
+        [Get("/api/Destinations/article/{type}")]
+        Task<ArticleResponse> GetArticle(string type);
     }
 }

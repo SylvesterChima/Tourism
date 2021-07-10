@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Crashes;
 using Tourism.Constants;
 using Tourism.Interfaces;
 using Tourism.Utilities;
+using MonkeyCache.FileStore;
 
 namespace Tourism
 {
@@ -19,6 +20,7 @@ namespace Tourism
         {
             InitializeComponent();
 
+            Barrel.ApplicationId = "enugutourism";
             ServiceRegistration.RegisterServices(this);
             MainPage = PageUtility.CreateRootPage();
         }

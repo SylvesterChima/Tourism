@@ -28,6 +28,7 @@
                         <yummy:PancakeView CornerRadius="0,0,0,40">
                             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">
                                 <ffimageloading:CachedImage Source="{Binding Event.ImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                             </Grid>
                         </yummy:PancakeView>
                     </Grid>
@@ -83,7 +84,7 @@
                 HorizontalTextAlignment="Center" />
 
 
-        <Button Text="{x:Static fa:fa.ArrowCircleLeft}" FontFamily="FAS" TextColor="{DynamicResource Gray-100}" FontSize="30" BorderColor="White" 
+        <Button Text="{x:Static fa:fa.ArrowLeft}" FontFamily="FAS" TextColor="{DynamicResource Gray-100}" FontSize="30" BorderColor="White" 
                         Padding="0,0,0,0" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" 
                         HorizontalOptions="Start" VerticalOptions="Start" Command="{Binding GoBack}">
 

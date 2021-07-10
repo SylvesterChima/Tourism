@@ -18,6 +18,7 @@ namespace Tourism.ViewModels
         internal readonly IEventService _eventService;
         internal readonly ICategoryService _categoryService;
         internal readonly IAppState AppState;
+        internal readonly ICacheService _cacheService;
 
         public Command<string> SeeAllCommand { get; }
         public Command<DestinationResponse> DestinationTapped { get; }
@@ -95,7 +96,7 @@ namespace Tourism.ViewModels
 
 
         public HomeViewModel(IErrorManager errorManager, IMessenger messenger, IAppState appState, IDestinationService destinationService,
-            IEventService eventService, IImageService imageService, ICategoryService categoryService)
+            IEventService eventService, IImageService imageService, ICategoryService categoryService, ICacheService cacheService)
         {
             this.ErrorManager = errorManager;
             this.Messenger = messenger;
@@ -104,6 +105,7 @@ namespace Tourism.ViewModels
             this._eventService = eventService;
             this._imageService = imageService;
             this._categoryService = categoryService;
+            this._cacheService = cacheService;
 
             SeeAllCommand = new Command<string>(OnSellAllClicked);
             DestinationTapped = new Command<DestinationResponse>(OnDestinationItemSelected);
@@ -111,6 +113,7 @@ namespace Tourism.ViewModels
             CategoryTapped = new Command<DestinationCategoryResponse>(OnCateogrySelected);
             EventTapped = new Command<EventResponse>(OnEventSelected);
             ShowFlyout = new Command(OnShowFlyout);
+
         }
     }
 }

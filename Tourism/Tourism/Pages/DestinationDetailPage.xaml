@@ -214,7 +214,7 @@
                                                                         Padding="0"
                                                                         HasShadow="False">
 
-                                                                        <Image Source="{Binding ImageUrl}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                                                                     </Frame>
 
                                                                     <Grid Grid.Row="0" Grid.Column="1" RowSpacing="1" Padding="10,5,0,0" HorizontalOptions="FillAndExpand">
@@ -232,7 +232,7 @@
                                                                                 TextColor="{DynamicResource SecondaryColor}" />
                                                                         </StackLayout>
 
-                                                                        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand">
+                                                                        <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="1" HorizontalOptions="FillAndExpand">
                                                                             <Label
                                                                                 FontSize="14"
                                                                                 LineBreakMode="TailTruncation"
@@ -240,6 +240,7 @@
                                                                                 VerticalOptions="Start"
                                                                                 TextColor="{DynamicResource SecondaryLightColor}"
                                                                                 Text="{Binding Kilometer}"/>
+                                                                            <Label Text="Km" FontSize="14" LineBreakMode="TailTruncation" TextColor="{DynamicResource SecondaryLightColor}"/>
 
                                                                         </StackLayout>
 
@@ -276,7 +277,7 @@
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
 
-                                    <CollectionView SelectionMode="None"  HeightRequest="400" ItemsSource="{Binding Destination.Images}" Margin="20,10,20,10">
+                                    <CollectionView SelectionMode="None"  HeightRequest="400" ItemsSource="{Binding Destination.Images}" Margin="10">
                                         <CollectionView.ItemsLayout>
                                             <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="2" HorizontalItemSpacing="2"/>
                                         </CollectionView.ItemsLayout>
@@ -320,7 +321,7 @@
                                         VerticalOptions="FillAndExpand">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="0,5,0,5">
+                                                <StackLayout Padding="10,5,10,5">
                                                     <StackLayout Orientation="Horizontal">
                                                         <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFit" HeightRequest="100" 
                                                             WidthRequest="100"/>
@@ -341,7 +342,7 @@
                                                             </StackLayout>
                                                         </StackLayout>
                                                     </StackLayout>
-                                                    <BoxView HeightRequest="1" BackgroundColor="{DynamicResource SecondaryLightColor}"/>
+                                                    <BoxView HeightRequest="1" BackgroundColor="{DynamicResource SecondaryLighterColor}"/>
                                                     <StackLayout.GestureRecognizers>
                                                         <TapGestureRecognizer Tapped="Festival_Tapped" NumberOfTapsRequired="1" />
                                                     </StackLayout.GestureRecognizers>
@@ -380,7 +381,7 @@
                                         VerticalOptions="FillAndExpand">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="0,5,0,5">
+                                                <StackLayout Padding="10,5,10,5">
                                                     <StackLayout Orientation="Horizontal">
                                                         <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFit" HeightRequest="100" 
                                                             WidthRequest="100"/>
@@ -388,15 +389,15 @@
                                                         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Padding="10,0">
                                                             <Label Text="{Binding Name}" FontSize="20" TextColor="{DynamicResource SecondaryColor}" LineBreakMode="TailTruncation" HorizontalOptions="StartAndExpand"/>
                                                             <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
-                                                                <Label Text="{Binding Address}" LineBreakMode="TailTruncation" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                                <Label Text="{Binding Address}" LineBreakMode="TailTruncation" FontSize="14" TextColor="{DynamicResource SecondaryLightColor}"/>
                                                             </StackLayout>
-                                                            <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
-                                                                <Label Text="{Binding Kilometer}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                                                <Label Text="Km" FontSize="12" LineBreakMode="TailTruncation" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                            <StackLayout Orientation="Horizontal" Spacing="1" Margin="0,-5,0,0">
+                                                                <Label Text="{Binding Kilometer}" FontSize="14" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                                <Label Text="Km" FontSize="14" LineBreakMode="TailTruncation" TextColor="{DynamicResource SecondaryLightColor}"/>
                                                             </StackLayout>
                                                         </StackLayout>
                                                     </StackLayout>
-                                                    <BoxView HeightRequest="1" BackgroundColor="{DynamicResource SecondaryLightColor}"/>
+                                                    <BoxView HeightRequest="1" BackgroundColor="{DynamicResource SecondaryLighterColor}"/>
                                                     <StackLayout.GestureRecognizers>
                                                         <TapGestureRecognizer Tapped="Hotel_Tapped" NumberOfTapsRequired="1" />
                                                     </StackLayout.GestureRecognizers>
@@ -445,9 +446,9 @@
             LineBreakMode="TailTruncation"
             VerticalOptions="Start" VerticalTextAlignment="Center"                   
             HorizontalTextAlignment="Center" />
-        
 
-        <Button Text="{x:Static fa:fa.ArrowCircleLeft}" FontFamily="FAS" TextColor="{DynamicResource Gray-100}" FontSize="30" BorderColor="White" 
+
+        <Button Text="{x:Static fa:fa.ArrowLeft}" FontFamily="FAS" TextColor="{DynamicResource Gray-100}" FontSize="30" BorderColor="White" 
                         Padding="0,0,0,0" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" 
                         HorizontalOptions="Start" VerticalOptions="Start" Command="{Binding GoBack}">
 

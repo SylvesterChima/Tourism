@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="Tourism.Pages.ImageViewerPage"
-             BackgroundColor="{DynamicResource SecondaryColor}"
+             BackgroundColor="{DynamicResource Gray-Black}"
              Title="{Binding Image.Description}">
     <ContentPage.Content>
         <Grid RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">

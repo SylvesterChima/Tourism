@@ -13,7 +13,8 @@ namespace Tourism.Helpers
         public static IRestClientService GetService()
         {
             var token = Preferences.Get("accessToken", string.Empty);
-            var restClient = RestService.For<IRestClientService>("http://192.168.219.104", new RefitSettings
+            //https://enugutourism.azurewebsites.net
+            var restClient = RestService.For<IRestClientService>("http//192.168.39.104", new RefitSettings
             {
                 AuthorizationHeaderValueGetter = async () => await Task.FromResult(token)
             });

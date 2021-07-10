@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Tourism.Interfaces;
 using Tourism.MessagerModels;
 using Tourism.Models;
 
@@ -10,15 +11,23 @@ namespace Tourism.ViewModels
 {
     public partial class HomeViewModel : BaseViewModel
     {
+        IAppState data = null;
         public async override Task Initialize(object initData)
         {
             try
             {
-                UserDialogs.Instance.ShowLoading();
-                this.AppState.Destinations = await _destinationService.GetDestinations();
-                this.AppState.Events = await _eventService.GetEvents();
-                this.AppState.Images = await _imageService.GetImages();
-                this.AppState.Categories = await _categoryService.GetCategories();
+                data = await _cacheService.GetAppState("appdata");
+                if(data != null)
+                {
+                    this.AppState.Destinations = data.Destinations;
+                    this.AppState.Events = data.Events;
+                    this.AppState.Images = data.Images;
+                    this.AppState.Categories = data.Categories;
+                }
+                else
+                {
+                    UserDialogs.Instance.ShowLoading();
+                }
 
                 this.Banners = this.AppState.GetBanners();
                 this.TopDestinations = this.AppState.GetTopDestinations();
@@ -26,7 +35,7 @@ namespace Tourism.ViewModels
                 this.RecentImages = this.AppState.GetRecentImages();
                 this.Categories = this.AppState.GetRandomCategories();
 
-                UserDialogs.Instance.HideLoading();
+                
             }
             catch (Exception ex)
             {
@@ -39,7 +48,20 @@ namespace Tourism.ViewModels
         {
             try
             {
-
+                this.AppState.Destinations = await _destinationService.GetDestinations();
+                this.AppState.Events = await _eventService.GetEvents();
+                this.AppState.Images = await _imageService.GetImages();
+                this.AppState.Categories = await _categoryService.GetCategories();
+                await _cacheService.SaveAppState("appdata", this.AppState);
+                if (data == null)
+                {
+                    this.Banners = this.AppState.GetBanners();
+                    this.TopDestinations = this.AppState.GetTopDestinations();
+                    this.Events = this.AppState.GetRandomEvents();
+                    this.RecentImages = this.AppState.GetRecentImages();
+                    this.Categories = this.AppState.GetRandomCategories();
+                }
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {

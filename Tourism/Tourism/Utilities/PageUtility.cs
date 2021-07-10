@@ -88,5 +88,20 @@ namespace Tourism.Utilities
             nav.BarTextColor = Color.FromHex(PageConstants.White);
             return nav;
         }
+
+        public static Page CreateArticlePage(string type)
+        {
+
+            IApp app = FreshMvvm.FreshIOC.Container.Resolve<IApp>();
+            var navData = new ArticleViewModel.Nav
+            {
+                type = type
+            };
+            Page page = FreshMvvm.FreshPageModelResolver.ResolvePageModel<ArticleViewModel>(navData);
+            NavigationPage nav = new FreshMvvm.FreshNavigationContainer(page) as NavigationPage;
+            nav.BarBackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
+            nav.BarTextColor = Color.FromHex(PageConstants.White);
+            return nav;
+        }
     }
 }

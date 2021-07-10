@@ -51,5 +51,12 @@ namespace Tourism
             mRootDetailPage.Detail = PageUtility.CreateHotelsPage();
             mRootDetailPage.IsPresented = false;
         }
+
+        //private void Commissioner_Tapped(object sender, EventArgs e)
+        //{
+        //    MainPage mRootDetailPage = (MainPage)(App.Current.MainPage);
+        //    mRootDetailPage.Detail = PageUtility.CreateArticlePage("Article");
+        //    mRootDetailPage.IsPresented = false;
+        //}
     }
 }

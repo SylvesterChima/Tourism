@@ -1,23 +1,33 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
-using Tourism.Models;
+using Tourism.Constants;
 
 namespace Tourism.ViewModels
 {
-    public partial class HotelsViewModel : BaseViewModel
+    public partial class ArticleViewModel : BaseViewModel
     {
-        
+        public class Nav
+        {
+            public string type { get; set; }
+        }
+
         public async override Task Initialize(object initData)
         {
             try
             {
                 UserDialogs.Instance.ShowLoading();
-                var result = await this._whereToStay.GetWhereToStays();
-                this.WhereToStays = new ObservableCollection<WhereToStayResponse>(result);
+
+                var nav = initData as Nav;
+
+                if (nav != null)
+                    this.Data = nav;
+
+                this.Article = await _article.GetArticle(this.Data.type);
+
+                this.HtmlContent = $"<html><head><meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1'/><style>html {{ background-color: {PageConstants.White}; color: {PageConstants.Black}; }} </style></head><body>{this.Article.AContent}</body></html>"; //$"<html><head><title>Xamarin Forms</title></head><body>{this.Article.AContent}</body></html>";
 
                 UserDialogs.Instance.HideLoading();
             }
@@ -52,18 +62,6 @@ namespace Tourism.ViewModels
             {
                 await ErrorManager.DisplayErrorMessageAsync(ex);
             }
-        }
-
-
-        public async void OnItemSelected(WhereToStayResponse item)
-        {
-            if (item == null)
-                return;
-            var nav = new HotelDetailViewModel.Nav
-            {
-                WhereToStay = item
-            };
-            await this.CoreMethods.PushPageModel<HotelDetailViewModel>(nav);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace Tourism
             FreshIOC.Container.Register<IImageService, ImageService>();
             FreshIOC.Container.Register<ICategoryService, CategoryService>();
             FreshIOC.Container.Register<IWhereToStayService, WhereToStayService>();
+            FreshIOC.Container.Register<ICacheService, CacheService>();
+            FreshIOC.Container.Register<IArticleService, ArticleService>();
         }
     }
 }

@@ -154,7 +154,7 @@ namespace Tourism.ViewModels
                 {
                     DestinationId = destinationId
                 };
-                await this.CoreMethods.PushPageModel<DestinationDetailViewModel>(nav, true, true);
+                await this.CoreMethods.PushPageModel<DestinationDetailViewModel>(nav);
             }
             catch (Exception ex)
             {
