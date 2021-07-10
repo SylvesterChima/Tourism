@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourism.Pages.ArticlePage"
-             Title="{Binding Article.ATitle}">
+             Title="{Binding Article.ATitle}"
+             Padding="0">
 
-    <WebView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <WebView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0">
         <WebView.Source>
             <HtmlWebViewSource Html="{Binding HtmlContent}"/>
         </WebView.Source>

@@ -51,12 +51,25 @@ namespace Tourism
             mRootDetailPage.Detail = PageUtility.CreateHotelsPage();
             mRootDetailPage.IsPresented = false;
         }
+        private void About_Tapped(object sender, EventArgs e)
+        {
+            MainPage mRootDetailPage = (MainPage)(App.Current.MainPage);
+            mRootDetailPage.Detail = PageUtility.CreateArticlePage("Enugu");
+            mRootDetailPage.IsPresented = false;
+        }
 
-        //private void Commissioner_Tapped(object sender, EventArgs e)
-        //{
-        //    MainPage mRootDetailPage = (MainPage)(App.Current.MainPage);
-        //    mRootDetailPage.Detail = PageUtility.CreateArticlePage("Article");
-        //    mRootDetailPage.IsPresented = false;
-        //}
+        private void Ministry_Tapped(object sender, EventArgs e)
+        {
+            MainPage mRootDetailPage = (MainPage)(App.Current.MainPage);
+            mRootDetailPage.Detail = PageUtility.CreateArticlePage("Ministry");
+            mRootDetailPage.IsPresented = false;
+        }
+
+        private void Commissioner_Tapped(object sender, EventArgs e)
+        {
+            MainPage mRootDetailPage = (MainPage)(App.Current.MainPage);
+            mRootDetailPage.Detail = PageUtility.CreateArticlePage("Commissioner");
+            mRootDetailPage.IsPresented = false;
+        }
     }
 }
