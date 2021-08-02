@@ -4,6 +4,6 @@
     <bitmap android:src="@drawable/wbg" android:tileMode="disabled" android:gravity="fill" />
   </item>
   <item>
-    <bitmap android:src="@drawable/bglogo" android:tileMode="disabled" android:gravity="center" />
+    <bitmap android:src="@drawable/ebglogo" android:tileMode="disabled" android:gravity="center" />
   </item>
 </layer-list>
