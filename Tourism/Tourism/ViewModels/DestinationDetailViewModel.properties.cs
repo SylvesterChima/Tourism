@@ -18,9 +18,11 @@ namespace Tourism.ViewModels
 
         public Nav Data { get; set; } = new Nav();
         public DestinationResponse Destination { get; set; }
+        public List<YoutubeVideo> YoutubeVideos { get; set; }
         public bool ShowAbout { get; set; } = true;
         public bool ShowNearby { get; set; }
         public bool ShowPhoto { get; set; }
+        public bool ShowVideo { get; set; }
         public bool ShowFestival { get; set; }
         public bool ShowHotel { get; set; }
 
@@ -29,6 +31,7 @@ namespace Tourism.ViewModels
         public Command ViewAbout { get; }
         public Command ViewNearby { get; }
         public Command ViewPhotos { get; }
+        public Command ViewVideos { get; }
         public Command ViewFestival { get; }
         public Command ViewHotel { get; }
         public Command OpenMap { get; }
@@ -45,6 +48,7 @@ namespace Tourism.ViewModels
             ViewAbout = new Command(OnViewAbout);
             ViewNearby = new Command(OnViewNearby);
             ViewPhotos = new Command(OnViewPhotos);
+            ViewVideos = new Command(OnViewVideos);
             ViewFestival = new Command(OnViewFestival);
             ViewHotel = new Command(OnViewHotel);
             OpenMap = new Command(OnOpenMap);

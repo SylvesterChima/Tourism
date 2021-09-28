@@ -27,11 +27,11 @@
                                         <Label Text="{Binding Name}" FontSize="20" TextColor="{DynamicResource SecondaryColor}" LineBreakMode="TailTruncation" HorizontalOptions="StartAndExpand"/>
                                         <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
                                             <Label Text="Event Date:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                            <Label Text="{Binding StartDate, StringFormat='{0:dd MMM yyyy}'}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                            <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding DateString}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                            <!--<StackLayout Orientation="Horizontal">
                                                 <Label Text="To:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
                                                 <Label Text="{Binding EndDate, StringFormat='{0:dd MMM yyyy}'}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                            </StackLayout>
+                                            </StackLayout>-->
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
                                             <Label Text="Location:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>

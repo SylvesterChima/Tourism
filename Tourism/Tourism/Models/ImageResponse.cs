@@ -17,5 +17,7 @@ namespace Tourism.Models
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public int HotelId { get; set; }
+        public int EventId { get; set; }
     }
 }

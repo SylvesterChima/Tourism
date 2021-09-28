@@ -15,5 +15,9 @@ namespace Tourism.Models
         public DateTime Date { get; set; }
         public string ImageUrl { get; set; }
         public string Location { get; set; }
+        public string DateString { get; set; }
+        public string YoutubePlayListId { get; set; }
+
+        public List<ImageResponse> Images { get; set; } = new List<ImageResponse>();
     }
 }

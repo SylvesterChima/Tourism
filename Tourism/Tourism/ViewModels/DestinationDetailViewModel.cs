@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Tourism.Models;
 using Xamarin.Essentials;
+using YoutubeExplode;
+using YoutubeExplode.Common;
 
 namespace Tourism.ViewModels
 {
@@ -14,6 +16,7 @@ namespace Tourism.ViewModels
         public class Nav
         {
             public int DestinationId { get; set; }
+            public string PlayListId { get; set; }
         }
 
         public async override Task Initialize(object initData)
@@ -28,6 +31,35 @@ namespace Tourism.ViewModels
 
 
                 this.Destination = await _destinationService.GetDestinationById(this.Data.DestinationId);
+
+                if (!string.IsNullOrWhiteSpace(this.Data.PlayListId))
+                {
+                    if (this.Data.PlayListId.Length >= 34)
+                    {
+                        var youtube = new YoutubeClient();
+                        // Get all playlist videos "PLa1F2ddGya_-UvuAqHAksYnB0qL9yWDO6"
+                        var videos = await youtube.Playlists.GetVideosAsync(this.Data.PlayListId);
+                        var dt = new List<YoutubeVideo>();
+                        if (videos != null)
+                        {
+                            foreach (var item in videos)
+                            {
+                                dt.Add(new YoutubeVideo
+                                {
+                                    Id = item.Id.Value,
+                                    Thumbnail = item.Thumbnails.FirstOrDefault()?.Url,
+                                    Title = item.Title,
+                                    VideoUrl = item.Url
+                                });
+                            }
+                            this.YoutubeVideos = dt;
+                        }
+                        else
+                        {
+                            this.YoutubeVideos = dt;
+                        }
+                    }
+                }
 
                 UserDialogs.Instance.HideLoading();
             }
@@ -71,6 +103,7 @@ namespace Tourism.ViewModels
             this.ShowFestival = false;
             this.ShowNearby = false;
             this.ShowPhoto = false;
+            this.ShowVideo = false;
             this.ShowHotel = false;
         }
 
@@ -92,6 +125,11 @@ namespace Tourism.ViewModels
         {
             HideViews();
             this.ShowPhoto = true;
+        }
+        void OnViewVideos()
+        {
+            HideViews();
+            this.ShowVideo = true;
         }
         void OnViewFestival()
         {
@@ -171,6 +209,22 @@ namespace Tourism.ViewModels
                     Image = image
                 };
                 await this.CoreMethods.PushPageModel<ImageViewerViewModel>(nav);
+            }
+            catch (Exception ex)
+            {
+                await this.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
+
+        public async Task OpenVideo(YoutubeVideo video)
+        {
+            try
+            {
+                var nav = new VideoPlayerViewModel.Nav
+                {
+                    Video = video
+                };
+                await this.CoreMethods.PushPageModel<VideoPlayerViewModel>(nav);
             }
             catch (Exception ex)
             {

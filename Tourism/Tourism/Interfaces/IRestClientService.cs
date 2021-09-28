@@ -32,5 +32,11 @@ namespace Tourism.Interfaces
 
         [Get("/api/Destinations/article/{type}")]
         Task<ArticleResponse> GetArticle(string type);
+
+        [Get("/api/WhereToStay/{id}")]
+        Task<WhereToStayResponse> GetWhereToStayDetails(int Id);
+
+        [Get("/api/Events/{id}")]
+        Task<EventResponse> GetEventDetails(int Id);
     }
 }

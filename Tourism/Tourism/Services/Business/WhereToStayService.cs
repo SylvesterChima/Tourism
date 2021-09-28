@@ -16,6 +16,12 @@ namespace Tourism.Services.Business
         {
             _restClient = RefitHelper.GetService();
         }
+
+        public async Task<WhereToStayResponse> GetWhereToStayDetails(int Id)
+        {
+            return await _restClient.GetWhereToStayDetails(Id);
+        }
+
         public async Task<List<WhereToStayResponse>> GetWhereToStays()
         {
             return await _restClient.GetWhereToStays();

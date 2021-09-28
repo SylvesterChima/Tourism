@@ -111,7 +111,8 @@ namespace Tourism.ViewModels
                 return;
             var nav = new DestinationDetailViewModel.Nav
             {
-                DestinationId = item.Id
+                DestinationId = item.Id,
+                PlayListId = item.YoutubePlayListId
             };
             await this.CoreMethods.PushPageModel<DestinationDetailViewModel>(nav);
         }

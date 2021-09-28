@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tourism.Constants;
+using Tourism.Models;
+using Tourism.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 
 namespace Tourism.Pages
@@ -60,6 +63,40 @@ namespace Tourism.Pages
                     TitleText.IsVisible = true;
                     TitleText.BackgroundColor = Color.FromHex(PageConstants.PrimaryColor);
                 }
+            }
+        }
+
+        private async void Photo_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as HotelDetailViewModel;
+            try
+            {
+                var obj = (ImageResponse)((StackLayout)sender).BindingContext;
+                if (obj != null)
+                {
+                    await model.OpenPhoto(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
+
+        private async void Video_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as HotelDetailViewModel;
+            try
+            {
+                var obj = (YoutubeVideo)((PancakeView)sender).BindingContext;
+                if (obj != null)
+                {
+                    await model.OpenVideo(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
             }
         }
     }

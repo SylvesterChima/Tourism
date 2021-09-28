@@ -16,6 +16,12 @@ namespace Tourism.Services.Business
         {
             _restClient = RefitHelper.GetService();
         }
+
+        public async Task<EventResponse> GetEventDetails(int Id)
+        {
+            return await _restClient.GetEventDetails(Id);
+        }
+
         public async Task<List<EventResponse>> GetEvents()
         {
             return await _restClient.GetEvents();

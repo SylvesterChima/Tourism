@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:fa="clr-namespace:FontAwesome"
+             x:Class="Tourism.Pages.VideoPlayerPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#000000">
+    <Grid RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <xct:MediaElement KeepScreenOn="True" MediaOpened="MediaElement_MediaOpened" Source="{Binding VideoUrl}" x:Name="myMediaElement" ShowsPlaybackControls="True"/>
+        <ActivityIndicator x:Name="myActivityIndicator" HorizontalOptions="Center" VerticalOptions="Center" Color="White" IsRunning="True" BackgroundColor="Transparent" IsVisible="false"/>
+        <Button Text="{x:Static fa:fa.Times}" FontFamily="FAS" FontSize="25" TextColor="#ffffff" BackgroundColor="Transparent" VerticalOptions="StartAndExpand" Clicked="CloseButton_Clicked" HorizontalOptions="StartAndExpand" Margin="0,20" x:Name="CloseButton"/>
+    </Grid>
+</ContentPage>

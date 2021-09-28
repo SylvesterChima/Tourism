@@ -9,5 +9,6 @@ namespace Tourism.Interfaces
     public interface IEventService
     {
         Task<List<EventResponse>> GetEvents();
+        Task<EventResponse> GetEventDetails(int Id);
     }
 }

@@ -8,6 +8,7 @@ using Tourism.Constants;
 using Tourism.Models;
 using Tourism.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 
 namespace Tourism.Pages
@@ -127,6 +128,23 @@ namespace Tourism.Pages
                 if (obj != null)
                 {
                     await model.OpenHotel(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                await model.ErrorManager.DisplayErrorMessageAsync(ex);
+            }
+        }
+
+        private async void Video_Tapped(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as DestinationDetailViewModel;
+            try
+            {
+                var obj = (YoutubeVideo)((PancakeView)sender).BindingContext;
+                if (obj != null)
+                {
+                    await model.OpenVideo(obj);
                 }
             }
             catch (Exception ex)

@@ -9,5 +9,6 @@ namespace Tourism.Interfaces
     public interface IWhereToStayService
     {
         Task<List<WhereToStayResponse>> GetWhereToStays();
+        Task<WhereToStayResponse> GetWhereToStayDetails(int Id);
     }
 }

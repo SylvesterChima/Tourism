@@ -105,6 +105,16 @@
                                     </xct:TabViewItem>
 
                                     <xct:TabViewItem
+                                        Text="Videos"
+                                        ControlTemplate="{StaticResource TabItemTemplate}"
+                                        TextColor="{DynamicResource SecondaryLightColor}"
+                                        TextColorSelected="{DynamicResource SecondaryColor}"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TapCommand="{Binding ViewVideos}">
+                                    </xct:TabViewItem>
+
+                                    <xct:TabViewItem
                                         Text="Festival"
                                         ControlTemplate="{StaticResource TabItemTemplate}"
                                         TextColor="{DynamicResource SecondaryLightColor}"
@@ -309,6 +319,52 @@
                                     </CollectionView>
                                 </Grid>
 
+                                <!--Videos view-->
+                                <Grid RowSpacing="0" IsVisible="{Binding ShowVideo}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <CollectionView SelectionMode="None" HeightRequest="400" ItemsSource="{Binding YoutubeVideos}" Margin="10">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <yummy:PancakeView CornerRadius="8" HeightRequest="150">
+                                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <ffimageloading:CachedImage Source="{Binding Thumbnail}" Aspect="AspectFill"/>
+                                                        <BoxView BackgroundColor="{DynamicResource OpacityLightColor}"/>
+                                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalOptions="EndAndExpand" Margin="10" 
+                                                               TextColor="{DynamicResource Gray-White}" FontSize="14" MaxLines="2" FontAttributes="Bold" />
+                                                        <Label Text="{x:Static fa:fa.Youtube}" FontFamily="FAB" FontSize="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                                               TextColor="{DynamicResource RedColor}"/>
+                                                    </Grid>
+
+                                                    <yummy:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="Video_Tapped" NumberOfTapsRequired="1"/>
+                                                    </yummy:PancakeView.GestureRecognizers>
+                                                </yummy:PancakeView>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+
+                                        <CollectionView.EmptyView>
+                                            <ContentView>
+                                                <StackLayout >
+                                                    <Label Text="No Record found"
+                                                       Margin="10,25,10,10"
+                                                       FontAttributes="Bold"
+                                                       FontSize="12"
+                                                           TextColor="{DynamicResource SecondaryLighterColor}"
+                                                       HorizontalOptions="Fill"
+                                                       HorizontalTextAlignment="Center" />
+                                                </StackLayout>
+                                            </ContentView>
+                                        </CollectionView.EmptyView>
+
+                                    </CollectionView>
+                                </Grid>
+                                
                                 <!--Festival view-->
                                 <Grid RowSpacing="0" IsVisible="{Binding ShowFestival}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
