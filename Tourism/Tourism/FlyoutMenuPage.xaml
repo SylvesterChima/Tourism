@@ -1,91 +1,210 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:fa="clr-namespace:FontAwesome"
-             x:Class="Tourism.FlyoutMenuPage"
-             Title="Enugu Tourism"
-             BackgroundColor="#ffffff">
+<ContentPage
+    x:Class="Tourism.FlyoutMenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="Enugu Tourism"
+    BackgroundColor="#ffffff">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <yummy:PancakeView CornerRadius="0,0,0,40" BackgroundColor="{DynamicResource PrimaryColor}" HeightRequest="250">
-            <Image Source="logo.png" WidthRequest="64" HeightRequest="64"
-                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <yummy:PancakeView
+            BackgroundColor="{DynamicResource PrimaryColor}"
+            CornerRadius="0,0,0,40"
+            HeightRequest="250">
+            <Image
+                HeightRequest="64"
+                HorizontalOptions="CenterAndExpand"
+                Source="logo.png"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="64" />
         </yummy:PancakeView>
         <Grid Grid.Row="1" Padding="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <StackLayout Orientation="Horizontal" Grid.Row="0" Padding="10">
-                <Label Text="{x:Static fa:fa.Artstation}" FontSize="24" FontFamily="FAB" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="Enugu at a glance" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                Grid.Row="0"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAB"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.Artstation}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Enugu at a glance"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Home_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Home_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="10" x:Name="sDestination">
-                <Label Text="{x:Static fa:fa.UmbrellaBeach}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="Destinations" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                x:Name="sDestination"
+                Grid.Row="1"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAS"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.UmbrellaBeach}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Destinations"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Destination_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Destination_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="2" Padding="10">
-                <Label Text="{x:Static fa:fa.CalendarAlt}" FontSize="24" FontFamily="FAR" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="Events" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                Grid.Row="2"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAR"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.CalendarAlt}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Events"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Events_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Events_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="3" Padding="10">
-                <Label Text="{x:Static fa:fa.CameraRetro}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="Photos" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                Grid.Row="3"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAS"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.CameraRetro}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Photos"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Photos_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Photos_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="4" Padding="10">
-                <Label Text="{x:Static fa:fa.Hotel}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="Hotels" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                Grid.Row="4"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAS"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.PhotoVideo}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Videos"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Hotels_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Video_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            
-            <BoxView BackgroundColor="{DynamicResource Gray-200}" Grid.Row="5" HeightRequest="2" Margin="0,10,0,10"/>
-            
-            <StackLayout Orientation="Horizontal" Grid.Row="6" Padding="10">
-                <Label Text="{x:Static fa:fa.InfoCircle}" FontSize="24" FontFamily="FAS" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="About Enugu State" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                Grid.Row="5"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAS"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.Hotel}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Hotels"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="About_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Hotels_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="7" Padding="10">
-                <Label Text="{x:Static fa:fa.Building}" FontSize="24" FontFamily="FAR" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="About Ministry" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+
+            <BoxView
+                Grid.Row="6"
+                Margin="0,10,0,10"
+                BackgroundColor="{DynamicResource Gray-200}"
+                HeightRequest="2" />
+
+            <StackLayout
+                Grid.Row="7"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAS"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.InfoCircle}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="About Enugu State"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Ministry_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="About_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="8" Padding="10">
-                <Label Text="{x:Static fa:fa.User}" FontSize="24" FontFamily="FAR" Margin="0,0,20,0" TextColor="{DynamicResource SecondaryColor}"/>
-                <Label Text="Meet Commissioner" TextColor="{DynamicResource SecondaryColor}" FontSize="16"/>
+            <StackLayout
+                Grid.Row="8"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAR"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.Building}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="About Ministry"
+                    TextColor="{DynamicResource SecondaryColor}" />
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Commissioner_Tapped" NumberOfTapsRequired="1"/>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Ministry_Tapped" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout
+                Grid.Row="9"
+                Padding="10"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,20,0"
+                    FontFamily="FAR"
+                    FontSize="24"
+                    Text="{x:Static fa:fa.User}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <Label
+                    FontSize="16"
+                    Text="Meet Commissioner"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Commissioner_Tapped" />
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </Grid>

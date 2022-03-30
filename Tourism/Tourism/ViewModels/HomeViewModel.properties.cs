@@ -26,12 +26,14 @@ namespace Tourism.ViewModels
         public Command<DestinationCategoryResponse> CategoryTapped { get; }
         public Command<EventResponse> EventTapped { get; }
         public Command ShowFlyout { get; }
+        public Command<YoutubeVideo> VideoTapped { get; }
 
         public List<DestinationResponse> Banners { get; set; } 
         public List<DestinationResponse> TopDestinations { get; set; }
         public List<ImageResponse> RecentImages { get; set; }
         public List<EventResponse> Events { get; set; }
         public List<DestinationCategoryResponse> Categories { get; set; }
+        public List<YoutubeVideo> RecentVideos { get; set; }
 
 
         public bool ShowTopDestination
@@ -113,6 +115,7 @@ namespace Tourism.ViewModels
             CategoryTapped = new Command<DestinationCategoryResponse>(OnCateogrySelected);
             EventTapped = new Command<EventResponse>(OnEventSelected);
             ShowFlyout = new Command(OnShowFlyout);
+            VideoTapped = new Command<YoutubeVideo>(OnVideoSelected);
 
         }
     }

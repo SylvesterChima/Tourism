@@ -1,58 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Tourism.App"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:themes="clr-namespace:Tourism.Themes">
+<Application
+    x:Class="Tourism.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:themes="clr-namespace:Tourism.Themes"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <themes:PrimaryTheme />
             </ResourceDictionary.MergedDictionaries>
-            <ControlTemplate
-		            x:Key="TabItemTemplate">
+            <ControlTemplate x:Key="TabItemTemplate">
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Image
-				                Grid.Row="0"
-				                VerticalOptions="Center"
-				                HorizontalOptions="Center"
-				                Source="{TemplateBinding CurrentIcon}" />
+                        Grid.Row="0"
+                        HorizontalOptions="Center"
+                        Source="{TemplateBinding CurrentIcon}"
+                        VerticalOptions="Center" />
 
-                    <BoxView Grid.Row="0" WidthRequest="8" HeightRequest="8"
-                           HorizontalOptions="Center"
-                           Margin="22,6,0,0"
-                           VerticalOptions="Start"
-                           CornerRadius="4"
-                           BackgroundColor="{TemplateBinding CurrentBadgeBackgroundColor}">
-
-
-                    </BoxView>
+                    <BoxView
+                        Grid.Row="0"
+                        Margin="22,6,0,0"
+                        BackgroundColor="{TemplateBinding CurrentBadgeBackgroundColor}"
+                        CornerRadius="4"
+                        HeightRequest="8"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        WidthRequest="8" />
                     <Label
-				                Grid.Row="1"
-				                HorizontalOptions="Center"
+                        Grid.Row="1"
                         Margin="0,0,0,15"
-				                FontSize="{TemplateBinding FontSize}"
-				                Text="{TemplateBinding Text}"
-				                TextColor="{TemplateBinding CurrentTextColor}" />
+                        FontSize="{TemplateBinding FontSize}"
+                        HorizontalOptions="Center"
+                        Text="{TemplateBinding Text}"
+                        TextColor="{TemplateBinding CurrentTextColor}" />
                 </Grid>
             </ControlTemplate>
 
-            <Style
-		            x:Key="TabItemStyle"
-		            TargetType="xct:TabViewItem">
-                <Setter
-			                Property="FontSize"
-			                Value="14" />
-                <Setter
-			                Property="TextColor"
-			                Value="#827D7D" />
-                <Setter
-			                Property="TextColorSelected"
-			                Value="#5CC9E5" />
+            <Style x:Key="TabItemStyle" TargetType="xct:TabViewItem">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#827D7D" />
+                <Setter Property="TextColorSelected" Value="#5CC9E5" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,117 +1,240 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Tourism.Pages.HomePage"
-             xmlns:model="clr-namespace:Tourism.Models"
-             xmlns:local="clr-namespace:Tourism.ViewModels"
-             xmlns:fa="clr-namespace:FontAwesome" xmlns:tourism="clr-namespace:Tourism"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="{DynamicResource PrimaryColor}"
-             Padding="0"
-             >
-    
-    <Grid RowSpacing="0" ColumnSpacing="0" Padding="0" BackgroundColor="#ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            
+<ContentPage
+    x:Class="Tourism.Pages.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:Tourism.ViewModels"
+    xmlns:model="clr-namespace:Tourism.Models"
+    xmlns:tourism="clr-namespace:Tourism"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0"
+    BackgroundColor="{DynamicResource PrimaryColor}"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid
+        Padding="0"
+        BackgroundColor="#ffffff"
+        ColumnSpacing="0"
+        HorizontalOptions="FillAndExpand"
+        RowSpacing="0"
+        VerticalOptions="FillAndExpand">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="ContentGrid" RowSpacing="0" ColumnSpacing="0" Grid.Row="0">
+        <Grid
+            x:Name="ContentGrid"
+            Grid.Row="0"
+            ColumnSpacing="0"
+            RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <tourism:myScrollView x:Name="TheScroll" Padding="0" Margin="0">
-                <Grid RowSpacing="0" ColumnSpacing="0">
+            <tourism:myScrollView
+                x:Name="TheScroll"
+                Margin="0"
+                Padding="0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition x:Name="ImageRow" Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition x:Name="ImageRow" Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <CarouselView x:Name="csvBanners" Margin="-2,-2,0,0" IndicatorView="indicatorView"
-                                    ItemsSource="{Binding Banners}" HeightRequest="350" HorizontalOptions="FillAndExpand" 
-                                    IsScrollAnimated="True" IsSwipeEnabled="True" >
+                    <CarouselView
+                        x:Name="csvBanners"
+                        Margin="-2,-2,0,0"
+                        HeightRequest="350"
+                        HorizontalOptions="FillAndExpand"
+                        IndicatorView="indicatorView"
+                        IsScrollAnimated="True"
+                        IsSwipeEnabled="True"
+                        ItemsSource="{Binding Banners}">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <yummy:PancakeView CornerRadius="0,0,0,40" x:DataType="model:DestinationResponse">
-                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">
-                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
-                                        <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}" HorizontalOptions="FillAndExpand" HeightRequest="350" VerticalOptions="StartAndExpand"/>
-                                        
-                                        <yummy:PancakeView CornerRadius="30,0,0,0" Padding="15" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                <yummy:PancakeView x:DataType="model:DestinationResponse" CornerRadius="0,0,0,40">
+                                    <Grid
+                                        Margin="0"
+                                        Padding="0"
+                                        ColumnSpacing="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        RowSpacing="0"
+                                        VerticalOptions="FillAndExpand">
+                                        <ffimageloading:CachedImage
+                                            Aspect="Fill"
+                                            CacheDuration="50"
+                                            DownsampleToViewSize="True"
+                                            ErrorPlaceholder="enugu.png"
+                                            HorizontalOptions="FillAndExpand"
+                                            LoadingPlaceholder="enugu.png"
+                                            RetryCount="3"
+                                            RetryDelay="600"
+                                            Source="{Binding ImageUrl}" />
+                                        <BoxView
+                                            BackgroundColor="{DynamicResource OpacityLighterColor}"
+                                            HeightRequest="350"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="StartAndExpand" />
+
+                                        <yummy:PancakeView
+                                            Padding="15"
+                                            CornerRadius="30,0,0,0"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="EndAndExpand">
                                             <StackLayout>
-                                                <Label Text="{Binding Name}" TextColor="{DynamicResource Gray-White}" FontAttributes="Bold" FontSize="30"/>
-                                                <StackLayout Orientation="Horizontal" Margin="0,-7,0,0">
-                                                    <Label Text="{x:Static fa:fa.MapMarkerAlt}" FontFamily="FAS" Margin="0,3,0,0" TextColor="{DynamicResource Gray-300}" FontSize="20"></Label>
-                                                    <Label Text="{Binding Area}" TextColor="{DynamicResource Gray-200}" FontSize="18" LineBreakMode="TailTruncation"/>
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="30"
+                                                    Text="{Binding Name}"
+                                                    TextColor="{DynamicResource Gray-White}" />
+                                                <StackLayout Margin="0,-7,0,0" Orientation="Horizontal">
+                                                    <Label
+                                                        Margin="0,3,0,0"
+                                                        FontFamily="FAS"
+                                                        FontSize="20"
+                                                        Text="{x:Static fa:fa.MapMarkerAlt}"
+                                                        TextColor="{DynamicResource Gray-300}" />
+                                                    <Label
+                                                        FontSize="18"
+                                                        LineBreakMode="TailTruncation"
+                                                        Text="{Binding Area}"
+                                                        TextColor="{DynamicResource Gray-200}" />
                                                 </StackLayout>
                                             </StackLayout>
                                         </yummy:PancakeView>
                                     </Grid>
                                     <yummy:PancakeView.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                                    NumberOfTapsRequired="1"
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=DestinationTapped}"		
-                                                    CommandParameter="{Binding .}">
-                                        </TapGestureRecognizer>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=DestinationTapped}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
                                     </yummy:PancakeView.GestureRecognizers>
                                 </yummy:PancakeView>
-                                
+
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <IndicatorView Grid.Row="1" Margin="0,10,0,0" WidthRequest="10" x:Name="indicatorView" IndicatorColor="LightGray" SelectedIndicatorColor="{DynamicResource RedColor}"/>
+                    <IndicatorView
+                        x:Name="indicatorView"
+                        Grid.Row="1"
+                        Margin="0,10,0,0"
+                        IndicatorColor="LightGray"
+                        SelectedIndicatorColor="{DynamicResource RedColor}"
+                        WidthRequest="10" />
 
-                    <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="End" Margin="30,20">
-                    </StackLayout>
-                    <StackLayout Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Grid RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <StackLayout
+                        Grid.Row="2"
+                        Margin="30,20"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal" />
+                    <StackLayout
+                        Grid.Row="3"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="20"
+                            VerticalOptions="StartAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Grid RowSpacing="20" Margin="15,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" IsVisible="{Binding ShowTopDestination}">
+                            <Grid
+                                Margin="15,0,0,0"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding ShowTopDestination}"
+                                RowSpacing="20"
+                                VerticalOptions="Start">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="Top Destinations" TextColor="{DynamicResource SecondaryColor}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="See more"  TextColor="{DynamicResource SecondaryLightColor}" FontAttributes="Bold" FontSize="14" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,15,0">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Top Destinations"
+                                    TextColor="{DynamicResource SecondaryColor}" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="See more"
+                                    TextColor="{DynamicResource SecondaryLightColor}"
+                                    VerticalOptions="Center">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding SeeAllCommand}"		
-                                    CommandParameter="Destinations">
-                                        </TapGestureRecognizer>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SeeAllCommand}"
+                                            CommandParameter="Destinations"
+                                            NumberOfTapsRequired="1" />
                                     </Label.GestureRecognizers>
                                 </Label>
-                                <ScrollView Orientation="Horizontal" Grid.Row="1" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
-                                    <StackLayout BindableLayout.ItemsSource="{Binding TopDestinations}" Orientation="Horizontal" Spacing="0" VerticalOptions="Start">
+                                <ScrollView
+                                    Grid.Row="1"
+                                    HorizontalScrollBarVisibility="Never"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never">
+                                    <StackLayout
+                                        BindableLayout.ItemsSource="{Binding TopDestinations}"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout VerticalOptions="Start" x:DataType="model:DestinationResponse" Margin="0,0,10,0">
-                                                    <Frame Padding="0,0,0,10" HasShadow="True" BorderColor="#ddd" HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="8">
-                                                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                                            <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill"  HeightRequest="150" WidthRequest="250" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                <StackLayout
+                                                    Margin="0,0,10,0"
+                                                    x:DataType="model:DestinationResponse"
+                                                    VerticalOptions="Start">
+                                                    <Frame
+                                                        Padding="0,0,0,10"
+                                                        BorderColor="#ddd"
+                                                        CornerRadius="8"
+                                                        HasShadow="True"
+                                                        HorizontalOptions="Start"
+                                                        VerticalOptions="Start">
+                                                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                                                            <ffimageloading:CachedImage
+                                                                Aspect="AspectFill"
+                                                                CacheDuration="50"
+                                                                DownsampleToViewSize="True"
+                                                                ErrorPlaceholder="enugu.png"
+                                                                HeightRequest="150"
+                                                                HorizontalOptions="FillAndExpand"
+                                                                LoadingPlaceholder="enugu.png"
+                                                                RetryCount="3"
+                                                                RetryDelay="600"
+                                                                Source="{Binding ImageUrl}"
+                                                                VerticalOptions="FillAndExpand"
+                                                                WidthRequest="250" />
 
-                                                            <Label Text="{Binding Area}" Margin="10,0" TextColor="{DynamicResource SecondaryLightColor}" FontSize="12"/>
-                                                            <Label Text="{Binding Name}" TextColor="{DynamicResource SecondaryColor}" Margin="10,-5,0,0" FontSize="15" />
+                                                            <Label
+                                                                Margin="10,0"
+                                                                FontSize="12"
+                                                                Text="{Binding Area}"
+                                                                TextColor="{DynamicResource SecondaryLightColor}" />
+                                                            <Label
+                                                                Margin="10,-5,0,0"
+                                                                FontSize="15"
+                                                                Text="{Binding Name}"
+                                                                TextColor="{DynamicResource SecondaryColor}" />
                                                         </StackLayout>
                                                     </Frame>
 
                                                     <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer 
-                                                            NumberOfTapsRequired="1"
-                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=DestinationTapped}"		
-                                                            CommandParameter="{Binding .}">
-                                                        </TapGestureRecognizer>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=DestinationTapped}"
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="1" />
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>
                                             </DataTemplate>
@@ -120,39 +243,84 @@
                                 </ScrollView>
                             </Grid>
 
-                            <Grid Grid.Row="1" RowSpacing="20" Margin="15,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" IsVisible="{Binding ShowCategories}">
+                            <Grid
+                                Grid.Row="1"
+                                Margin="15,0,0,0"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding ShowCategories}"
+                                RowSpacing="20"
+                                VerticalOptions="Start">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="Categories"  TextColor="{DynamicResource SecondaryColor}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="See all" TextColor="{DynamicResource SecondaryLightColor}" FontAttributes="Bold" FontSize="14" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,15,0">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Categories"
+                                    TextColor="{DynamicResource SecondaryColor}" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="See all"
+                                    TextColor="{DynamicResource SecondaryLightColor}"
+                                    VerticalOptions="Center">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding SeeAllCommand}"		
-                                    CommandParameter="Categories">
-                                        </TapGestureRecognizer>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SeeAllCommand}"
+                                            CommandParameter="Categories"
+                                            NumberOfTapsRequired="1" />
                                     </Label.GestureRecognizers>
                                 </Label>
-                                <ScrollView Orientation="Horizontal" Grid.Row="1" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal" Spacing="0" VerticalOptions="Start">
+                                <ScrollView
+                                    Grid.Row="1"
+                                    HorizontalScrollBarVisibility="Never"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never">
+                                    <StackLayout
+                                        BindableLayout.ItemsSource="{Binding Categories}"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <yummy:PancakeView CornerRadius="7" HeightRequest="45" WidthRequest="120" Margin="0,0,10,0" x:DataType="model:DestinationCategoryResponse">
+                                                <yummy:PancakeView
+                                                    Margin="0,0,10,0"
+                                                    x:DataType="model:DestinationCategoryResponse"
+                                                    CornerRadius="7"
+                                                    HeightRequest="45"
+                                                    WidthRequest="120">
                                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="Fill"/>
-                                                        <BoxView BackgroundColor="#aa1FCC79"/>
-                                                        <Label Text="{Binding Name}" LineBreakMode="TailTruncation" VerticalOptions="CenterAndExpand" Margin="10" 
-                                                               TextColor="{DynamicResource Gray-White}" FontSize="14" MaxLines="1" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="Fill"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding ImageUrl}" />
+                                                        <BoxView BackgroundColor="#aa1FCC79" />
+                                                        <Label
+                                                            Margin="10"
+                                                            FontAttributes="Bold"
+                                                            FontSize="14"
+                                                            HorizontalTextAlignment="Center"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="1"
+                                                            Text="{Binding Name}"
+                                                            TextColor="{DynamicResource Gray-White}"
+                                                            VerticalOptions="CenterAndExpand" />
                                                     </Grid>
 
                                                     <yummy:PancakeView.GestureRecognizers>
-                                                        <TapGestureRecognizer 
-                                                    NumberOfTapsRequired="1"
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=CategoryTapped}"		
-                                                    CommandParameter="{Binding .}">
-                                                        </TapGestureRecognizer>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=CategoryTapped}"
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="1" />
                                                     </yummy:PancakeView.GestureRecognizers>
                                                 </yummy:PancakeView>
                                             </DataTemplate>
@@ -161,39 +329,83 @@
                                 </ScrollView>
                             </Grid>
 
-                            <Grid Grid.Row="2" RowSpacing="20" Margin="15,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" IsVisible="{Binding ShowPhotos}">
+                            <Grid
+                                Grid.Row="2"
+                                Margin="15,0,0,0"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding ShowPhotos}"
+                                RowSpacing="20"
+                                VerticalOptions="Start">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="Recent Photos"  TextColor="{DynamicResource SecondaryColor}" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="Show more" TextColor="{DynamicResource SecondaryLightColor}" FontAttributes="Bold" FontSize="14" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,15,0">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Recent Photos"
+                                    TextColor="{DynamicResource SecondaryColor}" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="Show more"
+                                    TextColor="{DynamicResource SecondaryLightColor}"
+                                    VerticalOptions="Center">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding SeeAllCommand}"		
-                                    CommandParameter="Photos">
-                                        </TapGestureRecognizer>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SeeAllCommand}"
+                                            CommandParameter="Photos"
+                                            NumberOfTapsRequired="1" />
                                     </Label.GestureRecognizers>
                                 </Label>
-                                <ScrollView Orientation="Horizontal" Grid.Row="1" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
-                                    <StackLayout BindableLayout.ItemsSource="{Binding RecentImages}" Orientation="Horizontal" Spacing="0" VerticalOptions="Start">
+                                <ScrollView
+                                    Grid.Row="1"
+                                    HorizontalScrollBarVisibility="Never"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never">
+                                    <StackLayout
+                                        BindableLayout.ItemsSource="{Binding RecentImages}"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <yummy:PancakeView CornerRadius="8"  HeightRequest="220" WidthRequest="150" Margin="0,0,10,0" x:DataType="model:ImageResponse">
+                                                <yummy:PancakeView
+                                                    Margin="0,0,10,0"
+                                                    x:DataType="model:ImageResponse"
+                                                    CornerRadius="8"
+                                                    HeightRequest="220"
+                                                    WidthRequest="150">
                                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill"/>
-                                                        <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}"/>
-                                                        <Label Text="{Binding Description}" LineBreakMode="TailTruncation" VerticalOptions="EndAndExpand" Margin="10" 
-                                                               TextColor="{DynamicResource Gray-White}" FontSize="14" MaxLines="2" FontAttributes="Bold" />
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding ImageUrl}" />
+                                                        <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}" />
+                                                        <Label
+                                                            Margin="10"
+                                                            FontAttributes="Bold"
+                                                            FontSize="14"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="2"
+                                                            Text="{Binding Description}"
+                                                            TextColor="{DynamicResource Gray-White}"
+                                                            VerticalOptions="EndAndExpand" />
                                                     </Grid>
 
                                                     <yummy:PancakeView.GestureRecognizers>
-                                                        <TapGestureRecognizer 
-                                                    NumberOfTapsRequired="1"
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ImageItemTapped}"		
-                                                    CommandParameter="{Binding .}">
-                                                        </TapGestureRecognizer>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ImageItemTapped}"
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="1" />
                                                     </yummy:PancakeView.GestureRecognizers>
                                                 </yummy:PancakeView>
                                             </DataTemplate>
@@ -202,41 +414,95 @@
                                 </ScrollView>
                             </Grid>
 
-                            <Grid Grid.Row="3" RowSpacing="20" Margin="15,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" IsVisible="{Binding ShowEvents}">
+                            <Grid
+                                Grid.Row="3"
+                                Margin="15,0,0,0"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding ShowEvents}"
+                                RowSpacing="20"
+                                VerticalOptions="Start">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{x:Static fa:fa.Campground}"  TextColor="{DynamicResource SecondaryColor}" FontFamily="FAS" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="Events"  Grid.Row="1" TextColor="{DynamicResource SecondaryColor}" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold"/>
-                                <Label Text="Show all"  Grid.Row="1" TextColor="{DynamicResource SecondaryLightColor}" IsVisible="false" FontAttributes="Bold" FontSize="14" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,15,0">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="FAS"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{x:Static fa:fa.Campground}"
+                                    TextColor="{DynamicResource SecondaryColor}" />
+                                <Label
+                                    Grid.Row="1"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Events"
+                                    TextColor="{DynamicResource SecondaryColor}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,0,15,0"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    IsVisible="false"
+                                    Text="Show all"
+                                    TextColor="{DynamicResource SecondaryLightColor}"
+                                    VerticalOptions="Center">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                    NumberOfTapsRequired="1"
-                                    Command="{Binding SeeAllCommand}"		
-                                    CommandParameter="Events">
-                                        </TapGestureRecognizer>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SeeAllCommand}"
+                                            CommandParameter="Events"
+                                            NumberOfTapsRequired="1" />
                                     </Label.GestureRecognizers>
                                 </Label>
-                                <ScrollView Orientation="Horizontal" Grid.Row="2" VerticalOptions="Start" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Events}" Orientation="Horizontal" Spacing="0" VerticalOptions="Start">
+                                <ScrollView
+                                    Grid.Row="2"
+                                    HorizontalScrollBarVisibility="Never"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never">
+                                    <StackLayout
+                                        BindableLayout.ItemsSource="{Binding Events}"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
-                                                <yummy:PancakeView CornerRadius="8"  HeightRequest="150" WidthRequest="250" Margin="0,0,10,0" x:DataType="model:EventResponse">
+                                                <yummy:PancakeView
+                                                    Margin="0,0,10,0"
+                                                    x:DataType="model:EventResponse"
+                                                    CornerRadius="8"
+                                                    HeightRequest="150"
+                                                    WidthRequest="250">
                                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill"/>
-                                                        <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}"/>
-                                                        <Label Text="{Binding Name}" LineBreakMode="TailTruncation" VerticalOptions="EndAndExpand" Margin="10" 
-                                                               TextColor="{DynamicResource Gray-White}" FontSize="14" MaxLines="2" FontAttributes="Bold" />
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding ImageUrl}" />
+                                                        <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}" />
+                                                        <Label
+                                                            Margin="10"
+                                                            FontAttributes="Bold"
+                                                            FontSize="14"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="2"
+                                                            Text="{Binding Name}"
+                                                            TextColor="{DynamicResource Gray-White}"
+                                                            VerticalOptions="EndAndExpand" />
                                                     </Grid>
 
                                                     <yummy:PancakeView.GestureRecognizers>
-                                                        <TapGestureRecognizer 
-                                                    NumberOfTapsRequired="1"
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=EventTapped}"		
-                                                    CommandParameter="{Binding .}">
-                                                        </TapGestureRecognizer>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=EventTapped}"
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="1" />
                                                     </yummy:PancakeView.GestureRecognizers>
                                                 </yummy:PancakeView>
                                             </DataTemplate>
@@ -245,6 +511,99 @@
                                 </ScrollView>
                             </Grid>
 
+
+                            <Grid
+                                Grid.Row="4"
+                                Margin="15,30,0,0"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding ShowPhotos}"
+                                RowSpacing="20"
+                                VerticalOptions="Start">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Recent Viedos"
+                                    TextColor="{DynamicResource SecondaryColor}" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="Show more"
+                                    TextColor="{DynamicResource SecondaryLightColor}"
+                                    VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding SeeAllCommand}"
+                                            CommandParameter="Videos"
+                                            NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <ScrollView
+                                    Grid.Row="1"
+                                    HorizontalScrollBarVisibility="Never"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never">
+                                    <StackLayout
+                                        BindableLayout.ItemsSource="{Binding RecentVideos}"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <yummy:PancakeView
+                                                    Margin="0,0,10,0"
+                                                    x:DataType="model:YoutubeVideo"
+                                                    CornerRadius="8"
+                                                    HeightRequest="150"
+                                                    WidthRequest="250">
+                                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding Thumbnail}" />
+                                                        <BoxView BackgroundColor="{DynamicResource OpacityLighterColor}" />
+                                                        <Label
+                                                            Margin="10"
+                                                            FontAttributes="Bold"
+                                                            FontSize="14"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="2"
+                                                            Text="{Binding Title}"
+                                                            TextColor="{DynamicResource Gray-White}"
+                                                            VerticalOptions="EndAndExpand" />
+                                                        <Label
+                                                            FontFamily="FAB"
+                                                            FontSize="40"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Text="{x:Static fa:fa.Youtube}"
+                                                            TextColor="{DynamicResource RedColor}"
+                                                            VerticalOptions="CenterAndExpand" />
+                                                    </Grid>
+
+                                                    <yummy:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=VideoTapped}"
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="1" />
+                                                    </yummy:PancakeView.GestureRecognizers>
+                                                </yummy:PancakeView>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </ScrollView>
+                            </Grid>
 
                         </Grid>
                     </StackLayout>
@@ -252,22 +611,34 @@
                 </Grid>
             </tourism:myScrollView>
 
-            
+
         </Grid>
-        <Label x:Name="TitleText"
-            Text="ENUGU TOURISM"
-            IsVisible="false"
-            TextColor="White"
-            HeightRequest="60"
+        <Label
+            x:Name="TitleText"
             Padding="0,10,0,0"
-            FontSize="18"
             FontAttributes="Bold"
-            VerticalOptions="Start" VerticalTextAlignment="Center"                   
-            HorizontalTextAlignment="Center" />
-        
-        <Button Text="{x:Static fa:fa.Bars}" FontFamily="FAS" TextColor="White" FontSize="20" BorderColor="White" 
-                        Padding="0,0,0,0" BackgroundColor="#33ffffff" WidthRequest="30" HeightRequest="30" 
-                        HorizontalOptions="Start" VerticalOptions="Start" Command="{Binding ShowFlyout}">
+            FontSize="18"
+            HeightRequest="60"
+            HorizontalTextAlignment="Center"
+            IsVisible="false"
+            Text="ENUGU TOURISM"
+            TextColor="White"
+            VerticalOptions="Start"
+            VerticalTextAlignment="Center" />
+
+        <Button
+            Padding="0,0,0,0"
+            BackgroundColor="#33ffffff"
+            BorderColor="White"
+            Command="{Binding ShowFlyout}"
+            FontFamily="FAS"
+            FontSize="20"
+            HeightRequest="30"
+            HorizontalOptions="Start"
+            Text="{x:Static fa:fa.Bars}"
+            TextColor="White"
+            VerticalOptions="Start"
+            WidthRequest="30">
 
             <Button.Margin>
                 <OnPlatform x:TypeArguments="Thickness">

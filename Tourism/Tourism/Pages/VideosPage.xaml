@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Tourism.Pages.VideosPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:Tourism.ViewModels"
+    xmlns:model="clr-namespace:Tourism.Models"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="Videos"
+    BackgroundColor="#ffffff">
+    <ContentPage.Content>
+        <Grid Padding="10,0,10,5" RowDefinitions="Auto, *">
+
+            <StackLayout
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Spacing="15">
+                <CollectionView
+                    x:Name="mCollectionView"
+                    ItemsSource="{Binding Videos}"
+                    SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="5"
+                            Orientation="Vertical"
+                            Span="2"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label
+                                HorizontalOptions="CenterAndExpand"
+                                Text="No result found."
+                                TextColor="Gray"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <yummy:PancakeView
+                                x:DataType="model:YoutubeVideo"
+                                CornerRadius="8"
+                                HeightRequest="150">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <ffimageloading:CachedImage
+                                        Aspect="AspectFill"
+                                        CacheDuration="50"
+                                        DownsampleToViewSize="True"
+                                        ErrorPlaceholder="enugu.png"
+                                        LoadingPlaceholder="enugu.png"
+                                        RetryCount="3"
+                                        RetryDelay="600"
+                                        Source="{Binding Thumbnail}" />
+                                    <BoxView BackgroundColor="{DynamicResource OpacityLightColor}" />
+                                    <Label
+                                        Margin="10"
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="2"
+                                        Text="{Binding Title}"
+                                        TextColor="{DynamicResource Gray-White}"
+                                        VerticalOptions="EndAndExpand" />
+                                    <Label
+                                        FontFamily="FAB"
+                                        FontSize="40"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="{x:Static fa:fa.Youtube}"
+                                        TextColor="{DynamicResource RedColor}"
+                                        VerticalOptions="CenterAndExpand" />
+                                </Grid>
+
+                                <yummy:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:VideosViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </yummy:PancakeView.GestureRecognizers>
+                            </yummy:PancakeView>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

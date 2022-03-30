@@ -1,23 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:Tourism.Models"
-             xmlns:local="clr-namespace:Tourism.ViewModels" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:controls="clr-namespace:Tourism.CustomControls"
-             x:Class="Tourism.Pages.DestinationPage"
-             Title="Destinations"
-             BackgroundColor="#ffffff">
+<ContentPage
+    x:Class="Tourism.Pages.DestinationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Tourism.CustomControls"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:Tourism.ViewModels"
+    xmlns:model="clr-namespace:Tourism.Models"
+    Title="Destinations"
+    BackgroundColor="#ffffff">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *" Padding="15,5,15,5">
-            <Frame CornerRadius="20" BorderColor="#eeeeee" HorizontalOptions="FillAndExpand" Padding="10">
-                <StackLayout VerticalOptions="Center" Orientation="Horizontal" Padding="0, 0, 10, 0">
-                    <Image Source="mSearchGrey.png" HorizontalOptions="Start" Margin="8,0,10,0" />
+        <Grid Padding="15,5,15,5" RowDefinitions="Auto, *">
+            <Frame
+                Padding="10"
+                BorderColor="#eeeeee"
+                CornerRadius="20"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout
+                    Padding="0,0,10,0"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+                    <Image
+                        Margin="8,0,10,0"
+                        HorizontalOptions="Start"
+                        Source="mSearchGrey.png" />
                     <controls:BorderlessEntry
                         x:Name="SearchEntry"
                         BindingContext="{x:Reference mCollectionView}"
+                        FontSize="18"
                         HorizontalOptions="FillAndExpand"
                         Placeholder="search destination"
-                        FontSize="18"
                         TextChanged="SearchEntry_TextChanged"
                         TextColor="{DynamicResource SecondaryLightColor}" />
 
@@ -25,29 +37,58 @@
 
             </Frame>
             <StackLayout Grid.Row="1" Spacing="15">
-                <Label Text="{Binding Data.Category}" TextColor="{DynamicResource SecondaryColor}" FontSize="18" Margin="0,10,0,0"/>
-                <CollectionView SelectionMode="None" ItemsSource="{Binding Destinations}" x:Name="mCollectionView">
+                <Label
+                    Margin="0,10,0,0"
+                    FontSize="18"
+                    Text="{Binding Data.Category}"
+                    TextColor="{DynamicResource SecondaryColor}" />
+                <CollectionView
+                    x:Name="mCollectionView"
+                    ItemsSource="{Binding Destinations}"
+                    SelectionMode="None">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="2" HorizontalItemSpacing="2"/>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="2"
+                            Orientation="Vertical"
+                            Span="2"
+                            VerticalItemSpacing="2" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.EmptyView>
                         <StackLayout>
-                            <Label Text="No result found." TextColor="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label
+                                HorizontalOptions="CenterAndExpand"
+                                Text="No result found."
+                                TextColor="Gray"
+                                VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout x:DataType="model:DestinationResponse">
-                                <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="210" 
-                                   HorizontalOptions="FillAndExpand"/>
-                                <Label Text="{Binding Name}" Margin="0,-40,0,0" Padding="5" BackgroundColor="{DynamicResource OpacityColor}" TextColor="White" FontSize="14"/>
+                                <ffimageloading:CachedImage
+                                    Aspect="AspectFill"
+                                    CacheDuration="50"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="enugu.png"
+                                    HeightRequest="210"
+                                    HorizontalOptions="FillAndExpand"
+                                    LoadingPlaceholder="enugu.png"
+                                    RetryCount="3"
+                                    RetryDelay="600"
+                                    Source="{Binding ImageUrl}" />
+                                <Label
+                                    Margin="0,-40,0,0"
+                                    Padding="5"
+                                    BackgroundColor="{DynamicResource OpacityColor}"
+                                    FontSize="14"
+                                    Text="{Binding Name}"
+                                    TextColor="White" />
 
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:DestinationViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:DestinationViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </DataTemplate>

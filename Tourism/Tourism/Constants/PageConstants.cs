@@ -13,6 +13,8 @@ namespace Tourism.Constants
         public static readonly string Black = "#000000";
         public static readonly string Transparent = "#00000000";
 
+        public static readonly string YOUTUBE_CHANNEL_ID = "UCtY1q-2V5TvVDmCCXaVyjgQ";
+
 
 
 #if ReleaseProd

@@ -1,11 +1,15 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tourism.Constants;
 using Tourism.Interfaces;
 using Tourism.MessagerModels;
 using Tourism.Models;
+using YoutubeExplode;
+using YoutubeExplode.Common;
 
 namespace Tourism.ViewModels
 {
@@ -35,7 +39,28 @@ namespace Tourism.ViewModels
                 this.RecentImages = this.AppState.GetRecentImages();
                 this.Categories = this.AppState.GetRandomCategories();
 
-                
+                var youtube = new YoutubeClient();
+                var videos = await youtube.Channels.GetUploadsAsync(PageConstants.YOUTUBE_CHANNEL_ID);
+                var dt = new List<YoutubeVideo>();
+                if (videos != null)
+                {
+                    foreach (var item in videos)
+                    {
+                        dt.Add(new YoutubeVideo
+                        {
+                            Id = item.Id.Value,
+                            Thumbnail = item.Thumbnails.FirstOrDefault()?.Url,
+                            Title = item.Title,
+                            VideoUrl = item.Url
+                        });
+                    }
+                    this.RecentVideos = dt.Take(6).ToList();
+                }
+                else
+                {
+                    this.RecentVideos = dt;
+                }
+
             }
             catch (Exception ex)
             {
@@ -66,7 +91,7 @@ namespace Tourism.ViewModels
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await ErrorManager.DisplayErrorMessageAsync(ex);
+                //await ErrorManager.DisplayErrorMessageAsync(ex);
             }
         }
 
@@ -103,6 +128,10 @@ namespace Tourism.ViewModels
             {
                 await this.CoreMethods.PushPageModel<PhotoViewModel>();
             }
+            else if (str == "Videos")
+            {
+                await this.CoreMethods.PushPageModel<VideosViewModel>();
+            }
         }
 
         async void OnDestinationItemSelected(DestinationResponse item)
@@ -136,6 +165,17 @@ namespace Tourism.ViewModels
                 Event = item
             };
             await this.CoreMethods.PushPageModel<EventDetailViewModel>(nav);
+        }
+
+        async void OnVideoSelected(YoutubeVideo item)
+        {
+            if (item == null)
+                return;
+            var nav = new VideoPlayerViewModel.Nav
+            {
+                Video = item
+            };
+            await this.CoreMethods.PushPageModel<VideoPlayerViewModel>(nav);
         }
 
         async void OnImageItemSelected(ImageResponse item)

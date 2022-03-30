@@ -71,5 +71,12 @@ namespace Tourism
             mRootDetailPage.Detail = PageUtility.CreateArticlePage("Commissioner");
             mRootDetailPage.IsPresented = false;
         }
+
+        private void Video_Tapped(object sender, EventArgs e)
+        {
+            MainPage mRootDetailPage = (MainPage)(App.Current.MainPage);
+            mRootDetailPage.Detail = PageUtility.CreateVideoPage();
+            mRootDetailPage.IsPresented = false;
+        }
     }
 }

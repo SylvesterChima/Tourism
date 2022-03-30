@@ -1,26 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="Tourism.Pages.ImageViewerPage"
-             BackgroundColor="{DynamicResource Gray-Black}"
-             Title="{Binding Image.Description}">
+<ContentPage
+    x:Class="Tourism.Pages.ImageViewerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="{Binding Image.Description}"
+    BackgroundColor="{DynamicResource Gray-Black}">
     <ContentPage.Content>
-        <Grid RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">
+        <Grid
+            Margin="0"
+            Padding="0"
+            ColumnSpacing="0"
+            RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackLayout Spacing="0"
+            <StackLayout
                 HorizontalOptions="FillAndExpand"
+                Spacing="0"
                 VerticalOptions="FillAndExpand">
                 <ffimageloading:CachedImage
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        x:Name="image" 
-                        Aspect="AspectFit"
-                        Source="{Binding Image.ImageUrl}">
-                </ffimageloading:CachedImage>
+                    x:Name="image"
+                    Aspect="AspectFit"
+                    CacheDuration="50"
+                    DownsampleToViewSize="True"
+                    ErrorPlaceholder="enugu.png"
+                    HorizontalOptions="FillAndExpand"
+                    LoadingPlaceholder="enugu.png"
+                    RetryCount="3"
+                    RetryDelay="600"
+                    Source="{Binding Image.ImageUrl}"
+                    VerticalOptions="FillAndExpand" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

@@ -1,36 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:model="clr-namespace:Tourism.Models" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:local="clr-namespace:Tourism.ViewModels" 
-             x:Class="Tourism.Pages.CategoryPage"
-             Title="Categories"
-             BackgroundColor="#ffffff">
+<ContentPage
+    x:Class="Tourism.Pages.CategoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:Tourism.ViewModels"
+    xmlns:model="clr-namespace:Tourism.Models"
+    Title="Categories"
+    BackgroundColor="#ffffff">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *" Padding="10,0,10,5">
+        <Grid Padding="10,0,10,5" RowDefinitions="Auto, *">
 
-            <StackLayout Grid.Row="1" Spacing="15" Margin="0,5,0,0">
-                <CollectionView SelectionMode="None" ItemsSource="{Binding Categories}" x:Name="mCollectionView">
+            <StackLayout
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Spacing="15">
+                <CollectionView
+                    x:Name="mCollectionView"
+                    ItemsSource="{Binding Categories}"
+                    SelectionMode="None">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="2" HorizontalItemSpacing="2"/>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="2"
+                            Orientation="Vertical"
+                            Span="2"
+                            VerticalItemSpacing="2" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.EmptyView>
-                        <Label Text="No result found." TextColor="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="No result found."
+                            TextColor="Gray"
+                            VerticalOptions="CenterAndExpand" />
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout x:DataType="model:DestinationCategoryResponse">
-                                <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="210" 
-                                   HorizontalOptions="FillAndExpand"/>
-                                <Label Text="{Binding Name}" Margin="0,-40,0,0" Padding="5" BackgroundColor="{DynamicResource OpacityColor}" TextColor="White" FontSize="14"/>
+                                <ffimageloading:CachedImage
+                                    Aspect="AspectFill"
+                                    CacheDuration="50"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="enugu.png"
+                                    HeightRequest="210"
+                                    HorizontalOptions="FillAndExpand"
+                                    LoadingPlaceholder="enugu.png"
+                                    RetryCount="3"
+                                    RetryDelay="600"
+                                    Source="{Binding ImageUrl}" />
+                                <Label
+                                    Margin="0,-40,0,0"
+                                    Padding="5"
+                                    BackgroundColor="{DynamicResource OpacityColor}"
+                                    FontSize="14"
+                                    Text="{Binding Name}"
+                                    TextColor="White" />
 
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:CategoryViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CategoryViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </DataTemplate>

@@ -1,35 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:Tourism.Models" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:local="clr-namespace:Tourism.ViewModels" 
-             x:Class="Tourism.Pages.PhotoPage"
-             Title="Photos"
-             BackgroundColor="#ffffff">
+<ContentPage
+    x:Class="Tourism.Pages.PhotoPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:Tourism.ViewModels"
+    xmlns:model="clr-namespace:Tourism.Models"
+    Title="Photos"
+    BackgroundColor="#ffffff">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *" Padding="10,0,10,5">
+        <Grid Padding="10,0,10,5" RowDefinitions="Auto, *">
 
-            <StackLayout Grid.Row="1" Spacing="15" Margin="0,5,0,0">
-                <CollectionView SelectionMode="None" ItemsSource="{Binding Images}" x:Name="mCollectionView">
+            <StackLayout
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Spacing="15">
+                <CollectionView
+                    x:Name="mCollectionView"
+                    ItemsSource="{Binding Images}"
+                    SelectionMode="None">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="2" HorizontalItemSpacing="2"/>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="2"
+                            Orientation="Vertical"
+                            Span="3"
+                            VerticalItemSpacing="2" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.EmptyView>
                         <StackLayout>
-                            <Label Text="No result found." TextColor="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label
+                                HorizontalOptions="CenterAndExpand"
+                                Text="No result found."
+                                TextColor="Gray"
+                                VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout x:DataType="model:ImageResponse">
-                                <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="140" 
-                                   HorizontalOptions="FillAndExpand"/>
+                                <ffimageloading:CachedImage
+                                    Aspect="AspectFill"
+                                    CacheDuration="50"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="enugu.png"
+                                    HeightRequest="140"
+                                    HorizontalOptions="FillAndExpand"
+                                    LoadingPlaceholder="enugu.png"
+                                    RetryCount="3"
+                                    RetryDelay="600"
+                                    Source="{Binding ImageUrl}" />
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:PhotoViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:PhotoViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </DataTemplate>

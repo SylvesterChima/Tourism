@@ -1,55 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:tourism="clr-namespace:Tourism" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-             xmlns:model="clr-namespace:Tourism.Models"
-             xmlns:fa="clr-namespace:FontAwesome" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="Tourism.Pages.DestinationDetailPage"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage
+    x:Class="Tourism.Pages.DestinationDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:model="clr-namespace:Tourism.Models"
+    xmlns:tourism="clr-namespace:Tourism"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    NavigationPage.HasNavigationBar="False">
 
-    <Grid RowSpacing="0" ColumnSpacing="0" Padding="0" BackgroundColor="#ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid
+        Padding="0"
+        BackgroundColor="#ffffff"
+        ColumnSpacing="0"
+        HorizontalOptions="FillAndExpand"
+        RowSpacing="0"
+        VerticalOptions="FillAndExpand">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="ContentGrid" RowSpacing="0" ColumnSpacing="0" Grid.Row="0">
+        <Grid
+            x:Name="ContentGrid"
+            Grid.Row="0"
+            ColumnSpacing="0"
+            RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <tourism:myScrollView x:Name="TheScroll" Padding="0" Margin="0">
-                <Grid RowSpacing="0" ColumnSpacing="0">
+            <tourism:myScrollView
+                x:Name="TheScroll"
+                Margin="0"
+                Padding="0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Grid x:Name="imageContainer" Margin="-2,-2,0,0" HeightRequest="350" HorizontalOptions="FillAndExpand">
+                    <Grid
+                        x:Name="imageContainer"
+                        Margin="-2,-2,0,0"
+                        HeightRequest="350"
+                        HorizontalOptions="FillAndExpand">
                         <yummy:PancakeView CornerRadius="0,0,0,40">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" Padding="0" Margin="0" ColumnSpacing="0">
-                                <ffimageloading:CachedImage Source="{Binding Destination.ImageUrl}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
+                            <Grid
+                                Margin="0"
+                                Padding="0"
+                                ColumnSpacing="0"
+                                HorizontalOptions="FillAndExpand"
+                                RowSpacing="0"
+                                VerticalOptions="FillAndExpand">
+                                <ffimageloading:CachedImage
+                                    Aspect="Fill"
+                                    CacheDuration="50"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="enugu.png"
+                                    HorizontalOptions="FillAndExpand"
+                                    LoadingPlaceholder="enugu.png"
+                                    RetryCount="3"
+                                    RetryDelay="600"
+                                    Source="{Binding Destination.ImageUrl}" />
 
-                                <yummy:PancakeView CornerRadius="30,0,0,0" Padding="15" BackgroundColor="{DynamicResource OpacityLightColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                <yummy:PancakeView
+                                    Padding="15"
+                                    BackgroundColor="{DynamicResource OpacityLightColor}"
+                                    CornerRadius="30,0,0,0"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="EndAndExpand">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
                                         <StackLayout>
-                                            <Label Text="{Binding Destination.Name}" TextColor="{DynamicResource Gray-White}" FontAttributes="Bold" FontSize="22"/>
-                                            <StackLayout Orientation="Horizontal" Margin="0,-7,0,0">
-                                                <Label Text="{x:Static fa:fa.MapMarkerAlt}" FontFamily="FAS" Margin="0,3,0,0" TextColor="{DynamicResource Gray-300}" FontSize="16"></Label>
-                                                <Label Text="{Binding Destination.Area}" TextColor="{DynamicResource Gray-200}" FontSize="14" LineBreakMode="TailTruncation"/>
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="22"
+                                                Text="{Binding Destination.Name}"
+                                                TextColor="{DynamicResource Gray-White}" />
+                                            <StackLayout Margin="0,-7,0,0" Orientation="Horizontal">
+                                                <Label
+                                                    Margin="0,3,0,0"
+                                                    FontFamily="FAS"
+                                                    FontSize="16"
+                                                    Text="{x:Static fa:fa.MapMarkerAlt}"
+                                                    TextColor="{DynamicResource Gray-300}" />
+                                                <Label
+                                                    FontSize="14"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Destination.Area}"
+                                                    TextColor="{DynamicResource Gray-200}" />
                                             </StackLayout>
                                         </StackLayout>
-                                        <Frame Grid.Row="0" Grid.Column="1" Padding="0,1,0,0" Margin="0" HasShadow="False" 
-                                               BorderColor="{DynamicResource PrimaryColor}" WidthRequest="40" 
-                                               HeightRequest="40" CornerRadius="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
-                                            <Label Text="{x:Static fa:fa.MapMarkerAlt}" FontFamily="FAS" HorizontalOptions="CenterAndExpand" 
-                                                   VerticalOptions="CenterAndExpand" FontSize="22" TextColor="{DynamicResource PrimaryColor}"/>
+                                        <Frame
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="0"
+                                            Padding="0,1,0,0"
+                                            BorderColor="{DynamicResource PrimaryColor}"
+                                            CornerRadius="20"
+                                            HasShadow="False"
+                                            HeightRequest="40"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="40">
+                                            <Label
+                                                FontFamily="FAS"
+                                                FontSize="22"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Text="{x:Static fa:fa.MapMarkerAlt}"
+                                                TextColor="{DynamicResource PrimaryColor}"
+                                                VerticalOptions="CenterAndExpand" />
                                             <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding OpenMap}" NumberOfTapsRequired="1"/>
+                                                <TapGestureRecognizer Command="{Binding OpenMap}" NumberOfTapsRequired="1" />
                                             </Frame.GestureRecognizers>
                                         </Frame>
                                     </Grid>
@@ -57,136 +123,191 @@
                             </Grid>
                         </yummy:PancakeView>
                     </Grid>
-                    <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Grid RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <StackLayout
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="20"
+                            VerticalOptions="StartAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0">
                                 <xct:TabView
-                                    TabStripPlacement="Top"
+                                    TabContentBackgroundColor="{DynamicResource Gray-White}"
+                                    TabIndicatorColor="{DynamicResource PrimaryColor}"
+                                    TabItemsSource="{Binding MyTabs}"
                                     TabStripBackgroundColor="{DynamicResource Gray-White}"
                                     TabStripHeight="60"
-                                    TabItemsSource="{Binding MyTabs}"
-                                    TabIndicatorColor="{DynamicResource PrimaryColor}"
-                                    TabContentBackgroundColor="{DynamicResource Gray-White}">
+                                    TabStripPlacement="Top">
 
                                     <xct:TabViewItem
+                                        ControlTemplate="{StaticResource TabItemTemplate}"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        TapCommand="{Binding ViewAbout}"
                                         Text="About"
-                                        ControlTemplate="{StaticResource TabItemTemplate}"
                                         TextColor="{DynamicResource SecondaryLightColor}"
-                                        TextColorSelected="{DynamicResource SecondaryColor}"
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TapCommand="{Binding ViewAbout}">
-                                    </xct:TabViewItem>
+                                        TextColorSelected="{DynamicResource SecondaryColor}" />
 
                                     <xct:TabViewItem
+                                        ControlTemplate="{StaticResource TabItemTemplate}"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        TapCommand="{Binding ViewNearby}"
                                         Text="Nearby"
-                                        ControlTemplate="{StaticResource TabItemTemplate}"
                                         TextColor="{DynamicResource SecondaryLightColor}"
-                                        TextColorSelected="{DynamicResource SecondaryColor}"
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TapCommand="{Binding ViewNearby}">
-
-                                    </xct:TabViewItem>
+                                        TextColorSelected="{DynamicResource SecondaryColor}" />
 
                                     <xct:TabViewItem
+                                        ControlTemplate="{StaticResource TabItemTemplate}"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        TapCommand="{Binding ViewPhotos}"
                                         Text="Photos"
-                                        ControlTemplate="{StaticResource TabItemTemplate}"
                                         TextColor="{DynamicResource SecondaryLightColor}"
-                                        TextColorSelected="{DynamicResource SecondaryColor}"
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TapCommand="{Binding ViewPhotos}">
-                                    </xct:TabViewItem>
+                                        TextColorSelected="{DynamicResource SecondaryColor}" />
 
                                     <xct:TabViewItem
+                                        ControlTemplate="{StaticResource TabItemTemplate}"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        TapCommand="{Binding ViewVideos}"
                                         Text="Videos"
-                                        ControlTemplate="{StaticResource TabItemTemplate}"
                                         TextColor="{DynamicResource SecondaryLightColor}"
-                                        TextColorSelected="{DynamicResource SecondaryColor}"
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TapCommand="{Binding ViewVideos}">
-                                    </xct:TabViewItem>
+                                        TextColorSelected="{DynamicResource SecondaryColor}" />
 
                                     <xct:TabViewItem
+                                        ControlTemplate="{StaticResource TabItemTemplate}"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        TapCommand="{Binding ViewFestival}"
                                         Text="Festival"
-                                        ControlTemplate="{StaticResource TabItemTemplate}"
                                         TextColor="{DynamicResource SecondaryLightColor}"
-                                        TextColorSelected="{DynamicResource SecondaryColor}"
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TapCommand="{Binding ViewFestival}">
-
-                                    </xct:TabViewItem>
+                                        TextColorSelected="{DynamicResource SecondaryColor}" />
 
                                     <xct:TabViewItem
-                                        Text="Hotels"
                                         ControlTemplate="{StaticResource TabItemTemplate}"
-                                        TextColor="{DynamicResource SecondaryLightColor}"
-                                        TextColorSelected="{DynamicResource SecondaryColor}"
-                                        FontSize="12"
                                         FontAttributes="Bold"
-                                        TapCommand="{Binding ViewHotel}">
-
-                                    </xct:TabViewItem>
+                                        FontSize="12"
+                                        TapCommand="{Binding ViewHotel}"
+                                        Text="Hotels"
+                                        TextColor="{DynamicResource SecondaryLightColor}"
+                                        TextColorSelected="{DynamicResource SecondaryColor}" />
                                 </xct:TabView>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                
-                                <!--About view-->
-                                <Grid RowSpacing="0" IsVisible="{Binding ShowAbout}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                <!--  About view  -->
+                                <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding ShowAbout}"
+                                    RowSpacing="0"
+                                    VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
-                                    <StackLayout Grid.Row="0" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Destination.About}" FontSize="16" TextColor="#7D7D7D" HorizontalOptions="StartAndExpand"></Label>
-                                        <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Spacing="30" Margin="0,20,0,20">
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Margin="20,0"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                                        <Label
+                                            FontSize="16"
+                                            HorizontalOptions="StartAndExpand"
+                                            Text="{Binding Destination.About}"
+                                            TextColor="#7D7D7D" />
+                                        <StackLayout
+                                            Margin="0,20,0,20"
+                                            HorizontalOptions="EndAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="30">
                                             <StackLayout>
-                                                <Frame Grid.Row="0" Grid.Column="1" Padding="0,1,0,0" Margin="0" HasShadow="False" 
-                                                       BorderColor="{DynamicResource SecondaryColor}" WidthRequest="30" HorizontalOptions="CenterAndExpand"
-                                                       HeightRequest="30" CornerRadius="15" VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{x:Static fa:fa.MapMarkerAlt}" FontFamily="FAS" HorizontalOptions="CenterAndExpand" 
-                                                        VerticalOptions="CenterAndExpand" FontSize="18" TextColor="{DynamicResource SecondaryColor}"/>
+                                                <Frame
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0"
+                                                    Padding="0,1,0,0"
+                                                    BorderColor="{DynamicResource SecondaryColor}"
+                                                    CornerRadius="15"
+                                                    HasShadow="False"
+                                                    HeightRequest="30"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    WidthRequest="30">
+                                                    <Label
+                                                        FontFamily="FAS"
+                                                        FontSize="18"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Text="{x:Static fa:fa.MapMarkerAlt}"
+                                                        TextColor="{DynamicResource SecondaryColor}"
+                                                        VerticalOptions="CenterAndExpand" />
                                                 </Frame>
-                                                <Label Text="Map" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="{DynamicResource SecondaryColor}"/>
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Text="Map"
+                                                    TextColor="{DynamicResource SecondaryColor}" />
                                                 <StackLayout.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding OpenMap}" NumberOfTapsRequired="1"/>
+                                                    <TapGestureRecognizer Command="{Binding OpenMap}" NumberOfTapsRequired="1" />
                                                 </StackLayout.GestureRecognizers>
                                             </StackLayout>
                                             <StackLayout>
-                                                <Frame Grid.Row="0" Grid.Column="1" Padding="0,1,0,0" Margin="0" HasShadow="False" 
-                                                       BorderColor="{DynamicResource SecondaryColor}" WidthRequest="30" HorizontalOptions="CenterAndExpand"
-                                                       HeightRequest="30" CornerRadius="15" VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{x:Static fa:fa.Directions}" FontFamily="FAS" HorizontalOptions="CenterAndExpand" 
-                                                        VerticalOptions="CenterAndExpand" FontSize="18" TextColor="{DynamicResource SecondaryColor}"/>
+                                                <Frame
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Margin="0"
+                                                    Padding="0,1,0,0"
+                                                    BorderColor="{DynamicResource SecondaryColor}"
+                                                    CornerRadius="15"
+                                                    HasShadow="False"
+                                                    HeightRequest="30"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    WidthRequest="30">
+                                                    <Label
+                                                        FontFamily="FAS"
+                                                        FontSize="18"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Text="{x:Static fa:fa.Directions}"
+                                                        TextColor="{DynamicResource SecondaryColor}"
+                                                        VerticalOptions="CenterAndExpand" />
                                                 </Frame>
-                                                <Label Text="Direction" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="{DynamicResource SecondaryColor}"/>
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Text="Direction"
+                                                    TextColor="{DynamicResource SecondaryColor}" />
                                                 <StackLayout.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding OpenDirection}" NumberOfTapsRequired="1"/>
+                                                    <TapGestureRecognizer Command="{Binding OpenDirection}" NumberOfTapsRequired="1" />
                                                 </StackLayout.GestureRecognizers>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
                                 </Grid>
 
-                                <!--Nearby view-->
-                                <Grid RowSpacing="0" IsVisible="{Binding ShowNearby}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <!--  Nearby view  -->
+                                <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding ShowNearby}"
+                                    RowSpacing="0"
+                                    VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
-                                    <CollectionView ItemsSource="{Binding Destination.Nears}" HeightRequest="400"
+                                    <CollectionView
                                         Margin="0,0,0,10"
+                                        HeightRequest="400"
                                         HorizontalOptions="FillAndExpand"
+                                        ItemsSource="{Binding Destination.Nears}"
                                         VerticalOptions="FillAndExpand">
 
                                         <CollectionView.ItemTemplate>
@@ -196,15 +317,22 @@
                                                         <RowDefinition Height="auto" />
                                                         <RowDefinition Height="1" />
                                                     </Grid.RowDefinitions>
-                                                    <Frame Padding="1" HasShadow="False" Margin="0" HorizontalOptions="FillAndExpand">
+                                                    <Frame
+                                                        Margin="0"
+                                                        Padding="1"
+                                                        HasShadow="False"
+                                                        HorizontalOptions="FillAndExpand">
                                                         <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="Nearby_Tapped" NumberOfTapsRequired="1" />
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Nearby_Tapped" />
                                                         </Frame.GestureRecognizers>
-                                                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="Auto" />
                                                             </Grid.RowDefinitions>
-                                                            <Grid x:Name="grid" RowSpacing="0" Padding="0,10,0,10">
+                                                            <Grid
+                                                                x:Name="grid"
+                                                                Padding="0,10,0,10"
+                                                                RowSpacing="0">
                                                                 <Grid.RowDefinitions>
                                                                     <RowDefinition Height="auto" />
                                                                 </Grid.RowDefinitions>
@@ -214,20 +342,35 @@
                                                                         <ColumnDefinition Width="*" />
                                                                     </Grid.ColumnDefinitions>
 
-                                                                    <Frame Grid.Row="0" 
+                                                                    <Frame
+                                                                        Grid.Row="0"
                                                                         Margin="3.5,1.5,0,0"
-                                                                        VerticalOptions="CenterAndExpand"
-                                                                        HorizontalOptions="CenterAndExpand" 
-                                                                        WidthRequest="150"
-                                                                        HeightRequest="100"
-                                                                        CornerRadius="5"
                                                                         Padding="0"
-                                                                        HasShadow="False">
+                                                                        CornerRadius="5"
+                                                                        HasShadow="False"
+                                                                        HeightRequest="100"
+                                                                        HorizontalOptions="CenterAndExpand"
+                                                                        VerticalOptions="CenterAndExpand"
+                                                                        WidthRequest="150">
 
-                                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                                                        <ffimageloading:CachedImage
+                                                                            CacheDuration="50"
+                                                                            DownsampleToViewSize="True"
+                                                                            ErrorPlaceholder="enugu.png"
+                                                                            HorizontalOptions="CenterAndExpand"
+                                                                            LoadingPlaceholder="enugu.png"
+                                                                            RetryCount="3"
+                                                                            RetryDelay="600"
+                                                                            Source="{Binding ImageUrl}"
+                                                                            VerticalOptions="CenterAndExpand" />
                                                                     </Frame>
 
-                                                                    <Grid Grid.Row="0" Grid.Column="1" RowSpacing="1" Padding="10,5,0,0" HorizontalOptions="FillAndExpand">
+                                                                    <Grid
+                                                                        Grid.Row="0"
+                                                                        Grid.Column="1"
+                                                                        Padding="10,5,0,0"
+                                                                        HorizontalOptions="FillAndExpand"
+                                                                        RowSpacing="1">
                                                                         <Grid.RowDefinitions>
                                                                             <RowDefinition Height="auto" />
                                                                             <RowDefinition Height="auto" />
@@ -235,22 +378,30 @@
 
                                                                         <StackLayout Grid.Row="0">
                                                                             <Label
-                                                                                FontSize="17"
                                                                                 FontAttributes="Bold"
+                                                                                FontSize="17"
                                                                                 LineBreakMode="TailTruncation"
                                                                                 Text="{Binding Name}"
                                                                                 TextColor="{DynamicResource SecondaryColor}" />
                                                                         </StackLayout>
 
-                                                                        <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="1" HorizontalOptions="FillAndExpand">
+                                                                        <StackLayout
+                                                                            Grid.Row="1"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            Orientation="Horizontal"
+                                                                            Spacing="1">
                                                                             <Label
                                                                                 FontSize="14"
                                                                                 LineBreakMode="TailTruncation"
                                                                                 MaxLines="2"
-                                                                                VerticalOptions="Start"
+                                                                                Text="{Binding Kilometer}"
                                                                                 TextColor="{DynamicResource SecondaryLightColor}"
-                                                                                Text="{Binding Kilometer}"/>
-                                                                            <Label Text="Km" FontSize="14" LineBreakMode="TailTruncation" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                                                VerticalOptions="Start" />
+                                                                            <Label
+                                                                                FontSize="14"
+                                                                                LineBreakMode="TailTruncation"
+                                                                                Text="Km"
+                                                                                TextColor="{DynamicResource SecondaryLightColor}" />
 
                                                                         </StackLayout>
 
@@ -259,21 +410,26 @@
                                                             </Grid>
                                                         </Grid>
                                                     </Frame>
-                                                    <BoxView Grid.Row="1" Margin="0" BackgroundColor="{DynamicResource Gray-200}" HeightRequest="1" />
+                                                    <BoxView
+                                                        Grid.Row="1"
+                                                        Margin="0"
+                                                        BackgroundColor="{DynamicResource Gray-200}"
+                                                        HeightRequest="1" />
                                                 </Grid>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
-                                        
+
                                         <CollectionView.EmptyView>
                                             <ContentView>
-                                                <StackLayout >
-                                                    <Label Text="No Record found"
-                                                       Margin="10,25,10,10"
-                                                       FontAttributes="Bold"
-                                                       FontSize="12"
-                                                           TextColor="{DynamicResource SecondaryLighterColor}"
-                                                       HorizontalOptions="Fill"
-                                                       HorizontalTextAlignment="Center" />
+                                                <StackLayout>
+                                                    <Label
+                                                        Margin="10,25,10,10"
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalOptions="Fill"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="No Record found"
+                                                        TextColor="{DynamicResource SecondaryLighterColor}" />
                                                 </StackLayout>
                                             </ContentView>
                                         </CollectionView.EmptyView>
@@ -281,22 +437,44 @@
                                     </CollectionView>
                                 </Grid>
 
-                                <!--Photos view-->
-                                <Grid RowSpacing="0" IsVisible="{Binding ShowPhoto}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <!--  Photos view  -->
+                                <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding ShowPhoto}"
+                                    RowSpacing="0"
+                                    VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
-                                    <CollectionView SelectionMode="None"  HeightRequest="400" ItemsSource="{Binding Destination.Images}" Margin="10">
+                                    <CollectionView
+                                        Margin="10"
+                                        HeightRequest="400"
+                                        ItemsSource="{Binding Destination.Images}"
+                                        SelectionMode="None">
                                         <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="2" HorizontalItemSpacing="2"/>
+                                            <GridItemsLayout
+                                                HorizontalItemSpacing="2"
+                                                Orientation="Vertical"
+                                                Span="3"
+                                                VerticalItemSpacing="2" />
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout>
-                                                    <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="120" HorizontalOptions="FillAndExpand"/>
+                                                    <ffimageloading:CachedImage
+                                                        Aspect="AspectFill"
+                                                        CacheDuration="50"
+                                                        DownsampleToViewSize="True"
+                                                        ErrorPlaceholder="enugu.png"
+                                                        HeightRequest="120"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        LoadingPlaceholder="enugu.png"
+                                                        RetryCount="3"
+                                                        RetryDelay="600"
+                                                        Source="{Binding ImageUrl}" />
                                                     <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="Photo_Tapped" NumberOfTapsRequired="1"/>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Photo_Tapped" />
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>
                                             </DataTemplate>
@@ -304,14 +482,15 @@
 
                                         <CollectionView.EmptyView>
                                             <ContentView>
-                                                <StackLayout >
-                                                    <Label Text="No Record found"
-                                                       Margin="10,25,10,10"
-                                                       FontAttributes="Bold"
-                                                       FontSize="12"
-                                                           TextColor="{DynamicResource SecondaryLighterColor}"
-                                                       HorizontalOptions="Fill"
-                                                       HorizontalTextAlignment="Center" />
+                                                <StackLayout>
+                                                    <Label
+                                                        Margin="10,25,10,10"
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalOptions="Fill"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="No Record found"
+                                                        TextColor="{DynamicResource SecondaryLighterColor}" />
                                                 </StackLayout>
                                             </ContentView>
                                         </CollectionView.EmptyView>
@@ -319,30 +498,62 @@
                                     </CollectionView>
                                 </Grid>
 
-                                <!--Videos view-->
-                                <Grid RowSpacing="0" IsVisible="{Binding ShowVideo}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <!--  Videos view  -->
+                                <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding ShowVideo}"
+                                    RowSpacing="0"
+                                    VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
-                                    <CollectionView SelectionMode="None" HeightRequest="400" ItemsSource="{Binding YoutubeVideos}" Margin="10">
+                                    <CollectionView
+                                        Margin="10"
+                                        HeightRequest="400"
+                                        ItemsSource="{Binding YoutubeVideos}"
+                                        SelectionMode="None">
                                         <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5"/>
+                                            <GridItemsLayout
+                                                HorizontalItemSpacing="5"
+                                                Orientation="Vertical"
+                                                Span="2"
+                                                VerticalItemSpacing="5" />
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <yummy:PancakeView CornerRadius="8" HeightRequest="150">
                                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                        <ffimageloading:CachedImage Source="{Binding Thumbnail}" Aspect="AspectFill"/>
-                                                        <BoxView BackgroundColor="{DynamicResource OpacityLightColor}"/>
-                                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation" VerticalOptions="EndAndExpand" Margin="10" 
-                                                               TextColor="{DynamicResource Gray-White}" FontSize="14" MaxLines="2" FontAttributes="Bold" />
-                                                        <Label Text="{x:Static fa:fa.Youtube}" FontFamily="FAB" FontSize="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                               TextColor="{DynamicResource RedColor}"/>
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding Thumbnail}" />
+                                                        <BoxView BackgroundColor="{DynamicResource OpacityLightColor}" />
+                                                        <Label
+                                                            Margin="10"
+                                                            FontAttributes="Bold"
+                                                            FontSize="14"
+                                                            LineBreakMode="TailTruncation"
+                                                            MaxLines="2"
+                                                            Text="{Binding Title}"
+                                                            TextColor="{DynamicResource Gray-White}"
+                                                            VerticalOptions="EndAndExpand" />
+                                                        <Label
+                                                            FontFamily="FAB"
+                                                            FontSize="40"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Text="{x:Static fa:fa.Youtube}"
+                                                            TextColor="{DynamicResource RedColor}"
+                                                            VerticalOptions="CenterAndExpand" />
                                                     </Grid>
 
                                                     <yummy:PancakeView.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="Video_Tapped" NumberOfTapsRequired="1"/>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Video_Tapped" />
                                                     </yummy:PancakeView.GestureRecognizers>
                                                 </yummy:PancakeView>
                                             </DataTemplate>
@@ -350,72 +561,116 @@
 
                                         <CollectionView.EmptyView>
                                             <ContentView>
-                                                <StackLayout >
-                                                    <Label Text="No Record found"
-                                                       Margin="10,25,10,10"
-                                                       FontAttributes="Bold"
-                                                       FontSize="12"
-                                                           TextColor="{DynamicResource SecondaryLighterColor}"
-                                                       HorizontalOptions="Fill"
-                                                       HorizontalTextAlignment="Center" />
+                                                <StackLayout>
+                                                    <Label
+                                                        Margin="10,25,10,10"
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalOptions="Fill"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="No Record found"
+                                                        TextColor="{DynamicResource SecondaryLighterColor}" />
                                                 </StackLayout>
                                             </ContentView>
                                         </CollectionView.EmptyView>
 
                                     </CollectionView>
                                 </Grid>
-                                
-                                <!--Festival view-->
-                                <Grid RowSpacing="0" IsVisible="{Binding ShowFestival}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                <!--  Festival view  -->
+                                <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding ShowFestival}"
+                                    RowSpacing="0"
+                                    VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
-                                    <CollectionView ItemsSource="{Binding Destination.Festivals}" HeightRequest="400"
+                                    <CollectionView
                                         Margin="0,0,0,10"
+                                        HeightRequest="400"
                                         HorizontalOptions="FillAndExpand"
+                                        ItemsSource="{Binding Destination.Festivals}"
                                         VerticalOptions="FillAndExpand">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout Padding="10,5,10,5">
                                                     <StackLayout Orientation="Horizontal">
-                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFit" HeightRequest="100" 
-                                                            WidthRequest="100"/>
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFit"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            HeightRequest="100"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding ImageUrl}"
+                                                            WidthRequest="100" />
 
-                                                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Padding="10,0">
-                                                            <Label Text="{Binding Name}" FontSize="20" TextColor="{DynamicResource SecondaryColor}" LineBreakMode="TailTruncation" HorizontalOptions="StartAndExpand"/>
-                                                            <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
-                                                                <Label Text="Event Date:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                                                <Label Text="{Binding StartDate, StringFormat='{0:MMM dd}'}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                        <StackLayout
+                                                            Padding="10,0"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            VerticalOptions="CenterAndExpand">
+                                                            <Label
+                                                                FontSize="20"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding Name}"
+                                                                TextColor="{DynamicResource SecondaryColor}" />
+                                                            <StackLayout Margin="0,-5,0,0" Orientation="Horizontal">
+                                                                <Label
+                                                                    FontSize="12"
+                                                                    Text="Event Date:"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
+                                                                <Label
+                                                                    FontSize="12"
+                                                                    Text="{Binding StartDate, StringFormat='{0:MMM dd}'}"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
                                                                 <StackLayout Orientation="Horizontal">
-                                                                    <Label Text="To:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                                                    <Label Text="{Binding EndDate, StringFormat='{0:MMM dd}'}" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                                    <Label
+                                                                        FontSize="12"
+                                                                        Text="To:"
+                                                                        TextColor="{DynamicResource SecondaryLightColor}" />
+                                                                    <Label
+                                                                        FontSize="12"
+                                                                        Text="{Binding EndDate, StringFormat='{0:MMM dd}'}"
+                                                                        TextColor="{DynamicResource SecondaryLightColor}" />
                                                                 </StackLayout>
                                                             </StackLayout>
-                                                            <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
-                                                                <Label Text="Location:" FontSize="12" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                                                <Label Text="{Binding Location}" FontSize="12" LineBreakMode="TailTruncation" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                            <StackLayout Margin="0,-5,0,0" Orientation="Horizontal">
+                                                                <Label
+                                                                    FontSize="12"
+                                                                    Text="Location:"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
+                                                                <Label
+                                                                    FontSize="12"
+                                                                    LineBreakMode="TailTruncation"
+                                                                    Text="{Binding Location}"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
                                                             </StackLayout>
                                                         </StackLayout>
                                                     </StackLayout>
-                                                    <BoxView HeightRequest="1" BackgroundColor="{DynamicResource SecondaryLighterColor}"/>
+                                                    <BoxView BackgroundColor="{DynamicResource SecondaryLighterColor}" HeightRequest="1" />
                                                     <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="Festival_Tapped" NumberOfTapsRequired="1" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Festival_Tapped" />
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
-                                        
+
                                         <CollectionView.EmptyView>
                                             <ContentView>
-                                                <StackLayout >
-                                                    <Label Text="No Record found"
-                                                       Margin="10,25,10,10"
-                                                       FontAttributes="Bold"
-                                                       FontSize="12"
-                                                           TextColor="{DynamicResource SecondaryLighterColor}"
-                                                       HorizontalOptions="Fill"
-                                                       HorizontalTextAlignment="Center" />
+                                                <StackLayout>
+                                                    <Label
+                                                        Margin="10,25,10,10"
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalOptions="Fill"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="No Record found"
+                                                        TextColor="{DynamicResource SecondaryLighterColor}" />
                                                 </StackLayout>
                                             </ContentView>
                                         </CollectionView.EmptyView>
@@ -425,37 +680,74 @@
 
                                 </Grid>
 
-                                <!--Hotel view-->
-                                <Grid RowSpacing="0" IsVisible="{Binding ShowHotel}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <!--  Hotel view  -->
+                                <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding ShowHotel}"
+                                    RowSpacing="0"
+                                    VerticalOptions="FillAndExpand">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
 
-                                    <CollectionView ItemsSource="{Binding Destination.Stays}" HeightRequest="400"
+                                    <CollectionView
                                         Margin="0,0,0,10"
+                                        HeightRequest="400"
                                         HorizontalOptions="FillAndExpand"
+                                        ItemsSource="{Binding Destination.Stays}"
                                         VerticalOptions="FillAndExpand">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout Padding="10,5,10,5">
                                                     <StackLayout Orientation="Horizontal">
-                                                        <ffimageloading:CachedImage Source="{Binding ImageUrl}" Aspect="AspectFit" HeightRequest="100" 
-                                                            WidthRequest="100"/>
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFit"
+                                                            CacheDuration="50"
+                                                            DownsampleToViewSize="True"
+                                                            ErrorPlaceholder="enugu.png"
+                                                            HeightRequest="100"
+                                                            LoadingPlaceholder="enugu.png"
+                                                            RetryCount="3"
+                                                            RetryDelay="600"
+                                                            Source="{Binding ImageUrl}"
+                                                            WidthRequest="100" />
 
-                                                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Padding="10,0">
-                                                            <Label Text="{Binding Name}" FontSize="20" TextColor="{DynamicResource SecondaryColor}" LineBreakMode="TailTruncation" HorizontalOptions="StartAndExpand"/>
-                                                            <StackLayout Orientation="Horizontal" Margin="0,-5,0,0">
-                                                                <Label Text="{Binding Address}" LineBreakMode="TailTruncation" FontSize="14" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                        <StackLayout
+                                                            Padding="10,0"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            VerticalOptions="CenterAndExpand">
+                                                            <Label
+                                                                FontSize="20"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding Name}"
+                                                                TextColor="{DynamicResource SecondaryColor}" />
+                                                            <StackLayout Margin="0,-5,0,0" Orientation="Horizontal">
+                                                                <Label
+                                                                    FontSize="14"
+                                                                    LineBreakMode="TailTruncation"
+                                                                    Text="{Binding Address}"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
                                                             </StackLayout>
-                                                            <StackLayout Orientation="Horizontal" Spacing="1" Margin="0,-5,0,0">
-                                                                <Label Text="{Binding Kilometer}" FontSize="14" TextColor="{DynamicResource SecondaryLightColor}"/>
-                                                                <Label Text="Km" FontSize="14" LineBreakMode="TailTruncation" TextColor="{DynamicResource SecondaryLightColor}"/>
+                                                            <StackLayout
+                                                                Margin="0,-5,0,0"
+                                                                Orientation="Horizontal"
+                                                                Spacing="1">
+                                                                <Label
+                                                                    FontSize="14"
+                                                                    Text="{Binding Kilometer}"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
+                                                                <Label
+                                                                    FontSize="14"
+                                                                    LineBreakMode="TailTruncation"
+                                                                    Text="Km"
+                                                                    TextColor="{DynamicResource SecondaryLightColor}" />
                                                             </StackLayout>
                                                         </StackLayout>
                                                     </StackLayout>
-                                                    <BoxView HeightRequest="1" BackgroundColor="{DynamicResource SecondaryLighterColor}"/>
+                                                    <BoxView BackgroundColor="{DynamicResource SecondaryLighterColor}" HeightRequest="1" />
                                                     <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="Hotel_Tapped" NumberOfTapsRequired="1" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Hotel_Tapped" />
                                                     </StackLayout.GestureRecognizers>
                                                 </StackLayout>
                                             </DataTemplate>
@@ -463,14 +755,15 @@
 
                                         <CollectionView.EmptyView>
                                             <ContentView>
-                                                <StackLayout >
-                                                    <Label Text="No Record found"
-                                                       Margin="10,25,10,10"
-                                                       FontAttributes="Bold"
-                                                       FontSize="12"
-                                                           TextColor="{DynamicResource SecondaryLighterColor}"
-                                                       HorizontalOptions="Fill"
-                                                       HorizontalTextAlignment="Center" />
+                                                <StackLayout>
+                                                    <Label
+                                                        Margin="10,25,10,10"
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalOptions="Fill"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="No Record found"
+                                                        TextColor="{DynamicResource SecondaryLighterColor}" />
                                                 </StackLayout>
                                             </ContentView>
                                         </CollectionView.EmptyView>
@@ -491,22 +784,34 @@
 
 
         </Grid>
-        <Label x:Name="TitleText"
-            IsVisible="false"
-            HeightRequest="60"
+        <Label
+            x:Name="TitleText"
             Padding="0"
-            FontSize="18"
-            TextColor="White"
             FontAttributes="Bold"
-            Text="{Binding Destination.Name}"
+            FontSize="18"
+            HeightRequest="60"
+            HorizontalTextAlignment="Center"
+            IsVisible="false"
             LineBreakMode="TailTruncation"
-            VerticalOptions="Start" VerticalTextAlignment="Center"                   
-            HorizontalTextAlignment="Center" />
+            Text="{Binding Destination.Name}"
+            TextColor="White"
+            VerticalOptions="Start"
+            VerticalTextAlignment="Center" />
 
 
-        <Button Text="{x:Static fa:fa.ArrowLeft}" FontFamily="FAS" TextColor="{DynamicResource Gray-100}" FontSize="30" BorderColor="White" 
-                        Padding="0,0,0,0" BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" 
-                        HorizontalOptions="Start" VerticalOptions="Start" Command="{Binding GoBack}">
+        <Button
+            Padding="0,0,0,0"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            Command="{Binding GoBack}"
+            FontFamily="FAS"
+            FontSize="30"
+            HeightRequest="30"
+            HorizontalOptions="Start"
+            Text="{x:Static fa:fa.ArrowLeft}"
+            TextColor="{DynamicResource Gray-100}"
+            VerticalOptions="Start"
+            WidthRequest="30">
 
             <Button.Margin>
                 <OnPlatform x:TypeArguments="Thickness">
